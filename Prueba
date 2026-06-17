@@ -1,0 +1,212 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Plataforma de Evaluación Ergonómica</title>
+    <style>
+        /* --- DISEÑO COMPLETO (CSS) --- */
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            background-color: #faf8f5;
+            margin: 0;
+            padding: 0;
+        }
+
+        /* Encabezado Principal Verde */
+        header {
+            background-color: #1b431c; 
+            color: white;
+            text-align: center;
+            padding: 25px 10px;
+        }
+
+        header h1 {
+            margin: 0;
+            font-size: 24px;
+            font-weight: 600;
+        }
+
+        header p {
+            margin: 8px 0 0 0;
+            font-size: 13px;
+            letter-spacing: 3px;
+            color: #a5d6a7;
+        }
+
+        /* Tarjeta Contenedora del Formulario */
+        .container {
+            max-width: 650px;
+            background-color: white;
+            margin: 40px auto;
+            padding: 35px;
+            border-radius: 8px;
+            box-shadow: 0 4px 15px rgba(0, 0, 0, 0.08);
+        }
+
+        /* Subtítulos de sección con barra verde a la izquierda */
+        .section-title {
+            color: #2e7d32;
+            border-left: 4px solid #2e7d32;
+            padding-left: 12px;
+            margin: 25px 0 20px 0;
+            font-size: 16px;
+            font-weight: bold;
+        }
+
+        /* Grupos de los menús desplegables */
+        .form-group {
+            margin-bottom: 22px;
+        }
+
+        label {
+            display: block;
+            font-weight: 600;
+            margin-bottom: 8px;
+            color: #333;
+            font-size: 14px;
+        }
+
+        select {
+            width: 100%;
+            padding: 12px;
+            border: 1px solid #ccc;
+            border-radius: 4px;
+            background-color: #fff;
+            font-size: 14px;
+            color: #444;
+            outline: none;
+        }
+
+        select:focus {
+            border-color: #2e7d32;
+        }
+
+        /* Botón de Acción */
+        button {
+            width: 100%;
+            background-color: #2e7d32;
+            color: white;
+            border: none;
+            padding: 14px;
+            font-size: 16px;
+            font-weight: bold;
+            border-radius: 4px;
+            cursor: pointer;
+            margin-top: 10px;
+            transition: background 0.2s;
+        }
+
+        button:hover {
+            background-color: #1b5e20;
+        }
+
+        /* Cuadro de Resultados */
+        .resultado-box {
+            margin-top: 30px;
+            padding: 20px;
+            background-color: #e8f5e9;
+            border-left: 5px solid #2e7d32;
+            border-radius: 4px;
+            font-size: 16px;
+            color: #1b5e20;
+            display: none; /* Oculto hasta que se calcula */
+        }
+    </style>
+</head>
+<body>
+
+    <header>
+        <h1>Plataforma de Evaluación Ergonómica</h1>
+        <p>REBA • RULA • ROSA • OCRA</p>
+    </header>
+
+    <div class="container">
+        
+        <div class="form-group">
+            <label for="metodo">Selecciona el Método de Análisis:</label>
+            <select id="metodo">
+                <option value="rosa">ROSA (Puestos de Oficina / Pantallas)</option>
+                <option value="rula">RULA (Extremidades Superiores)</option>
+                <option value="reba">REBA (Cuerpo Entero)</option>
+            </select>
+        </div>
+
+        <div class="section-title">ROSA - Elementos del Puesto de Oficina</div>
+
+        <div class="form-group">
+            <label for="silla">Silla (Altura y Profundidad):</label>
+            <select id="silla">
+                <option value="2">Muy alta / muy baja / sin espacio (2)</option>
+                <option value="1">Adecuada con flexión de rodillas a 90° (1)</option>
+            </select>
+        </div>
+
+        <div class="form-group">
+            <label for="respaldo">Respaldo (Soporte Lumbar):</label>
+            <select id="respaldo">
+                <option value="1">Adecuado con reclinación 95°-110° (1)</option>
+                <option value="2">Sin soporte o ángulo incorrecto (2)</option>
+            </select>
+        </div>
+
+        <div class="form-group">
+            <label for="pantalla">Pantalla de Visualización:</label>
+            <select id="pantalla">
+                <option value="2">Muy baja/alta o cuello girado (2)</option>
+                <option value="1">A la altura de los ojos y centrada (1)</option>
+            </select>
+        </div>
+
+        <div class="form-group">
+            <label for="perifericos">Ratón y Teclado:</label>
+            <select id="perifericos">
+                <option value="1">Alineados con hombros y muñecas rectas (1)</option>
+                <option value="2">Posición forzada o alejados (2)</option>
+            </select>
+        </div>
+
+        <div class="form-group">
+            <label for="tiempo">Duración del Trabajo Diario:</label>
+            <select id="tiempo">
+                <option value="1">Más de 4 horas continuas (+1)</option>
+                <option value="0">Menos de 4 horas o alternado (+0)</option>
+            </select>
+        </div>
+
+        <button onclick="calcularPuntaje()">Calcular Puntuación</button>
+
+        <div id="resultado" class="resultado-box"></div>
+
+    </div>
+
+    <script>
+        function calcularPuntaje() {
+            // Recoger los valores seleccionados en el formulario
+            let silla = parseInt(document.getElementById('silla').value);
+            let respaldo = parseInt(document.getElementById('respaldo').value);
+            let pantalla = parseInt(document.getElementById('pantalla').value);
+            let perifericos = parseInt(document.getElementById('perifericos').value);
+            let tiempo = parseInt(document.getElementById('tiempo').value);
+
+            // Realizar una suma básica de factores
+            let puntuacionFinal = silla + respaldo + pantalla + perifericos + tiempo;
+
+            // Definir el nivel de riesgo según el resultado numérico
+            let nivelRiesgo = "";
+            if (puntuacionFinal <= 4) {
+                nivelRiesgo = "<strong>Riesgo Bajo:</strong> El puesto de trabajo es aceptable.";
+            } else if (puntuacionFinal > 4 && puntuacionFinal <= 6) {
+                nivelRiesgo = "<strong>Riesgo Moderado:</strong> Es aconsejable revisar el puesto e introducir mejoras.";
+            } else {
+                nivelRiesgo = "<strong>Riesgo Alto:</strong> Se requiere intervención y cambios ergonómicos pronto.";
+            }
+
+            // Mostrar el cuadro de resultados con el texto correspondiente
+            let cajaResultado = document.getElementById('resultado');
+            cajaResultado.style.display = "block";
+            cajaResultado.innerHTML = `<strong>Puntuación Final Estimada:</strong> ${puntuacionFinal} <br><br> ${nivelRiesgo}`;
+        }
+    </script>
+</body>
+</html>
