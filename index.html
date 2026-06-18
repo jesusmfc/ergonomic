@@ -1,30 +1,37 @@
-HTML
 <!DOCTYPE html>
 <html lang="es">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Plataforma Profesional de Evaluación Ergonómica</title>
+    <title>Plataforma de Evaluación Ergonómica - Edición Profesional</title>
     <style>
-        /* --- DISEÑO CORPORATIVO (AZUL Y GRIS CLARO) --- */
+        /* --- CONFIGURACIÓN BASE Y FONDO DE OFICINA --- */
         body {
             font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
-            background-color: #f4f6f8; /* Gris claro de fondo */
-            color: #333333;
+            color: #222222;
             margin: 0;
             padding: 0;
             min-height: 100vh;
             position: relative;
-            padding-bottom: 60px; /* Espacio para la marca de agua */
+            padding-bottom: 60px;
+            
+            /* Imagen de fondo de oficina sobrecargada (se mantiene clarita y visible) */
+            background-image: linear-gradient(rgba(255, 255, 255, 0.75), rgba(255, 255, 255, 0.75)), 
+                              url('https://images.unsplash.com/photo-1504384308090-c894fdcc538d?q=80&w=1280');
+            background-size: cover;
+            background-position: center;
+            background-attachment: fixed;
+            background-repeat: no-repeat;
         }
 
-        /* Encabezado Azul Profesional */
+        /* Encabezado Negro y Marrón */
         header {
-            background-color: #0d3b66; /* Azul profundo corporativo */
+            background-color: #1a1a1a; /* Negro absoluto de fondo */
             color: #ffffff;
             text-align: center;
             padding: 30px 10px;
-            box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+            box-shadow: 0 4px 15px rgba(0, 0, 0, 0.2);
+            border-bottom: 4px solid #6f4e37; /* Línea de acento Marrón Café */
         }
 
         header h1 {
@@ -38,29 +45,31 @@ HTML
             margin: 8px 0 0 0;
             font-size: 13px;
             letter-spacing: 2px;
-            color: #94e2ff; /* Azul claro acento */
+            color: #d7ccc8; /* Marrón muy claro para contraste */
             text-transform: uppercase;
         }
 
-        /* Tarjeta Central */
+        /* Tarjeta Central Semi-transparente para ver el fondo */
         .container {
             max-width: 750px;
-            background-color: #ffffff;
+            background-color: rgba(255, 255, 255, 0.92); /* Blanco sutilmente transparente */
             margin: 40px auto;
             padding: 35px;
             border-radius: 8px;
-            border: 1px solid #e1e4e8;
-            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.05);
+            border: 1px solid #3e2723; /* Borde marrón oscuro */
+            box-shadow: 0 8px 25px rgba(0, 0, 0, 0.15);
         }
 
-        /* Títulos de sección */
+        /* Títulos de sección en Marrón */
         .section-title {
-            color: #0d3b66;
-            border-left: 5px solid #0d3b66;
+            color: #4e342e; /* Marrón oscuro profundo */
+            border-left: 5px solid #1a1a1a; /* Detalle en negro */
             padding-left: 12px;
             margin: 25px 0 20px 0;
             font-size: 18px;
             font-weight: bold;
+            text-transform: uppercase;
+            letter-spacing: 0.5px;
         }
 
         /* Formularios */
@@ -72,31 +81,31 @@ HTML
             display: block;
             font-weight: 600;
             margin-bottom: 8px;
-            color: #2d3748;
+            color: #1a1a1a; /* Texto de etiquetas en negro */
             font-size: 14px;
         }
 
         select {
             width: 100%;
             padding: 12px;
-            border: 1px solid #cbd5e0;
+            border: 1px solid #5d4037; /* Borde marrón */
             border-radius: 5px;
             background-color: #ffffff;
             font-size: 14px;
-            color: #4a5568;
+            color: #212121;
             outline: none;
             transition: border-color 0.2s;
         }
 
         select:focus {
-            border-color: #0d3b66;
-            background-color: #fdfdfd;
+            border-color: #1a1a1a; /* Foco cambia a negro */
+            background-color: #fbfbfb;
         }
 
-        /* Botón de Acción */
+        /* Botón de Acción Negro con efecto Marrón al pasar el cursor */
         button {
             width: 100%;
-            background-color: #0d3b66;
+            background-color: #1a1a1a; /* Negro principal */
             color: #ffffff;
             border: none;
             padding: 14px;
@@ -105,11 +114,12 @@ HTML
             border-radius: 5px;
             cursor: pointer;
             margin-top: 15px;
+            box-shadow: 0 4px 10px rgba(0, 0, 0, 0.2);
             transition: background-color 0.2s, transform 0.1s;
         }
 
         button:hover {
-            background-color: #05233f;
+            background-color: #4e342e; /* Cambia a Marrón Oscuro al pasar el mouse */
         }
 
         button:active {
@@ -118,22 +128,22 @@ HTML
 
         /* Caja Dinámica de Métodos */
         .metodo-seccion {
-            display: none; /* Se activa dinámicamente con JS */
+            display: none;
         }
 
         .active {
             display: block;
         }
 
-        /* Cuadro de Resultados */
+        /* Cuadro de Resultados de Riesgo */
         .resultado-box {
             margin-top: 30px;
             padding: 20px;
-            background-color: #eef4f8;
-            border-left: 5px solid #0d3b66;
+            background-color: #efebe9; /* Fondo grisáceo marrón muy claro */
+            border-left: 5px solid #3e2723;
             border-radius: 5px;
             font-size: 16px;
-            color: #0d3b66;
+            color: #3e2723;
             display: none;
         }
 
@@ -143,14 +153,15 @@ HTML
             bottom: 15px;
             right: 20px;
             font-size: 12px;
-            color: #a0aec0;
+            color: #1a1a1a;
             font-weight: bold;
             letter-spacing: 1px;
             user-select: none;
             pointer-events: none;
-            background: rgba(244, 246, 248, 0.8);
-            padding: 4px 8px;
+            background: rgba(239, 235, 233, 0.85); /* Fondo marrón claro transparente */
+            padding: 6px 12px;
             border-radius: 3px;
+            border: 1px solid #d7ccc8;
         }
     </style>
 </head>
@@ -273,27 +284,21 @@ HTML
     <div class="marca-agua">creado por Frias y Prado</div>
 
     <script>
-        // Cambiar dinámicamente las secciones de las preguntas según el método
         function cambiarMetodo() {
             let seleccion = document.getElementById('metodoSeleccionado').value;
-            
-            // Ocultar todas las secciones primero
             let secciones = document.getElementsByClassName('metodo-seccion');
             for(let i=0; i < secciones.length; i++) {
                 secciones[i].classList.remove('active');
             }
             
-            // Mostrar la sección elegida
             if(seleccion === 'rula') document.getElementById('sec-rula').classList.add('active');
             if(seleccion === 'reba') document.getElementById('sec-reba').classList.add('active');
             if(seleccion === 'ocra') document.getElementById('sec-ocra').classList.add('active');
             if(seleccion === 'rosa') document.getElementById('sec-rosa').classList.add('active');
 
-            // Limpiar cuadro de resultados anterior al cambiar de método
             document.getElementById('resultado').style.display = "none";
         }
 
-        // Procesamiento matemático de las puntuaciones según guías de Ergonautas
         function procesarEvaluacion() {
             let metodo = document.getElementById('metodoSeleccionado').value;
             let puntajeFinal = 0;
@@ -302,7 +307,7 @@ HTML
             if (metodo === 'rula') {
                 let brazo = parseInt(document.getElementById('rula-brazo').value);
                 let cuello = parseInt(document.getElementById('rula-cuello').value);
-                puntajeFinal = brazo + cuello; // Simulación del cruce
+                puntajeFinal = brazo + cuello;
 
                 if (puntajeFinal <= 3) diagnostico = "<strong>Nivel de Acción 1:</strong> Postura aceptable si no se mantiene o repite durante largos períodos.";
                 else if (puntajeFinal <= 5) diagnostico = "<strong>Nivel de Acción 2:</strong> Riesgo medio. Se requiere investigación adicional y pueden ser necesarios cambios.";
@@ -333,14 +338,13 @@ HTML
             } else if (metodo === 'rosa') {
                 let silla = parseInt(document.getElementById('rosa-silla').value);
                 let pantalla = parseInt(document.getElementById('rosa-pantalla').value);
-                puntajeFinal = Math.max(silla, pantalla) + 1; // Factor acumulado típico
+                puntajeFinal = Math.max(silla, pantalla) + 1;
 
                 if (puntajeFinal <= 3) diagnostico = "<strong>Riesgo Aceptable:</strong> El puesto de oficina se encuentra adaptado ergonómicamente.";
                 else if (puntajeFinal <= 5) diagnostico = "<strong>Riesgo Moderado:</strong> Se aconseja regular componentes del mobiliario.";
                 else diagnostico = "<strong>Riesgo Alto:</strong> El puesto supera los valores límites. Es obligatorio intervenir las dimensiones ergonómicas.";
             }
 
-            // Mostrar la respuesta estructurada en el DOM
             let contenedorResultado = document.getElementById('resultado');
             contenedorResultado.style.display = "block";
             contenedorResultado.innerHTML = `
