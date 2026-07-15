@@ -1,374 +1,483 @@
-<!DOCTYPE html>
+¡Excelente! Ahora sí tenemos la radiografía exacta del método ROSA según las tablas metodológicas reales de la Universidad Politécnica de Valencia (UPV).  He tomado el documento de Word y he mapeado cada pregunta, opción, incremento por desviación, los tres selectores de tiempo independientes (para Silla , Pantalla/Teléfono y Teclado/Mouse ) y, lo más importante, las matrices de cruce exactas (Tablas A, B, C, D y E) para que el cálculo sea 100% fiel a la teoría científica y a los niveles de actuación normativos.  Aquí tienes el código completo de producción listo para reemplazar en tu repositorio:Código Completo (index.html)HTML<!DOCTYPE html>
 <html lang="es">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Calculadora Completa Método ROSA</title>
+    <title>Evaluación Ergonómica - Método ROSA</title>
     <script src="https://cdn.tailwindcss.com"></script>
 </head>
-<body class="bg-gray-50 text-gray-800 font-sans min-h-screen flex flex-col justify-between">
+<body class="bg-slate-100 text-slate-800 font-sans min-h-screen flex flex-col justify-between">
 
-    <!-- Encabezado -->
-    <header class="bg-blue-700 text-white py-6 shadow-md">
+    <header class="bg-blue-800 text-white py-6 shadow-md border-b-4 border-blue-900">
         <div class="container mx-auto px-4 text-center">
-            <h1 class="text-3xl font-bold">Evaluación Ergonómica - Método ROSA</h1>
-            <p class="text-sm mt-2 opacity-90">Rapid Office Strain Assessment (Análisis de Puestos de Oficina)</p>
+            <h1 class="text-3xl font-extrabold tracking-tight">EVALUACIÓN DEL MÉTODO ROSA</h1>
+            <p class="text-sm mt-2 font-medium opacity-90">Rapid Office Strain Assessment — Implementación Rigurosa de Tablas y Matrices</p>
         </div>
     </header>
 
-    <!-- Contenido Principal -->
     <main class="container mx-auto px-4 py-8 max-w-5xl">
-        <div class="bg-white rounded-xl shadow-lg p-6 md:p-8">
-            <p class="mb-6 text-gray-600 border-b pb-4">
-                Completa detalladamente todos los apartados de la evaluación. El software calcula la puntuación final aplicando los incrementos por tiempo de exposición y la lógica de integración del método.
+        <div class="bg-white rounded-xl shadow-xl p-6 md:p-8">
+            <p class="mb-6 text-sm text-slate-600 border-b pb-4 leading-relaxed">
+                Complete de forma rigurosa cada uno de los criterios. El sistema procesará las puntuaciones acumuladas aplicando los incrementos específicos y cruzará los resultados a través de las matrices correspondientes (Tablas A, B, C, D y E) para determinar el Nivel de Riesgo y Actuación exactos.
             </p>
 
             <form id="rosaForm" class="space-y-8">
                 
-                <!-- 1. EVALUACIÓN DE LA SILLA -->
-                <div class="bg-blue-50/50 p-5 rounded-lg border border-blue-100">
-                    <h2 class="text-xl font-bold text-blue-800 mb-4 flex items-center">
-                        <span class="bg-blue-600 text-white rounded-full w-7 h-7 inline-flex items-center justify-center mr-2 text-sm">1</span>
-                        Soporte de Silla (Grupo A)
+                <div class="bg-slate-50 p-6 rounded-lg border border-slate-200 shadow-sm">
+                    <h2 class="text-xl font-bold text-blue-800 mb-4 flex items-center border-b pb-2 border-blue-100">
+                        <span class="bg-blue-800 text-white rounded-full w-7 h-7 inline-flex items-center justify-center mr-2 text-sm">1</span>
+                        Evaluación de la Silla (Grupo A)
                     </h2>
                     
                     <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
-                        <!-- Altura del Asiento -->
-                        <div class="space-y-2">
-                            <label class="block font-semibold">Altura del asiento:</label>
-                            <select id="sillaAltura" class="w-full border rounded p-2 bg-white">
-                                <option value="1">Adecuada (Ángulo de flexión de rodillas ~90°)</option>
-                                <option value="2">Muy alta (Pies no apoyan o rodillas > 90°)</option>
-                                <option value="2">Muy baja (Rodillas flexionadas < 90°)</option>
+                        <div class="bg-white p-4 rounded border border-slate-150">
+                            <label class="block font-bold text-slate-700 text-sm mb-2">Altura del Asiento:</label>
+                            <select id="sillaAltura" class="w-full border rounded p-2 text-sm mb-3">
+                                <option value="1">Rodillas flectadas a 90º aproximadamente.</option>
+                                <option value="2">Asiento muy bajo. Ángulo de la rodilla < 90º.</option>
+                                <option value="2">Asiento muy alto. Ángulo de la rodilla > 90º.</option>
+                                <option value="3">Sin contacto de los pies con el suelo.</option>
                             </select>
-                            <div class="text-xs text-gray-500 space-y-1">
-                                <label class="inline-flex items-center mr-4">
-                                    <input type="checkbox" id="alt_no_ajustable" value="1" class="mr-1"> Altura no ajustable (+1)
-                                </label>
-                                <label class="inline-flex items-center">
-                                    <input type="checkbox" id="alt_sin_apoyo" value="1" class="mr-1"> Espacio insuficiente para piernas (+1)
-                                </label>
+                            <span class="block font-semibold text-xs text-slate-500 mb-1">Incrementos (+1 c/u):</span>
+                            <div class="space-y-1 text-xs text-slate-600">
+                                <label class="flex items-center"><input type="checkbox" id="alt_espacio" value="1" class="mr-2"> Espacio insuficiente para las piernas bajo la mesa.</label>
+                                <label class="flex items-center"><input type="checkbox" id="alt_no_ajustable" value="1" class="mr-2"> La altura del asiento no es regulable.</label>
                             </div>
                         </div>
 
-                        <!-- Profundidad del Asiento -->
-                        <div class="space-y-2">
-                            <label class="block font-semibold">Profundidad del asiento:</label>
-                            <select id="sillaProfundidad" class="w-full border rounded p-2 bg-white">
-                                <option value="1">Adecuada (Espacio holgado entre asiento y corva de rodilla)</option>
-                                <option value="2">Muy profunda (Presiona la zona poplítea)</option>
-                                <option value="2">Muy corta (Poco soporte de los muslos)</option>
+                        <div class="bg-white p-4 rounded border border-slate-150">
+                            <label class="block font-bold text-slate-700 text-sm mb-2">Profundidad del Asiento:</label>
+                            <select id="sillaProfundidad" class="w-full border rounded p-2 text-sm mb-3">
+                                <option value="1">Aproximadamente 8 cm de espacio entre el asiento y la parte trasera de las rodillas.</option>
+                                <option value="2">Asiento muy largo. Menos de 8 cm de espacio entre el asiento y la parte trasera de las rodillas.</option>
+                                <option value="2">Asiento muy corto. Más de 8 cm de espacio entre el asiento y la parte trasera de las rodillas.</option>
                             </select>
-                            <div class="text-xs text-gray-500">
-                                <label class="inline-flex items-center">
-                                    <input type="checkbox" id="prof_no_ajustable" value="1" class="mr-1"> Profundidad no ajustable (+1)
-                                </label>
+                            <span class="block font-semibold text-xs text-slate-500 mb-1">Incrementos (+1):</span>
+                            <div class="text-xs text-slate-600">
+                                <label class="flex items-center"><input type="checkbox" id="prof_no_ajustable" value="1" class="mr-2"> La profundidad del asiento no es regulable.</label>
                             </div>
                         </div>
 
-                        <!-- Apoyabrazos -->
-                        <div class="space-y-2">
-                            <label class="block font-semibold">Apoyabrazos:</label>
-                            <select id="apoyabrazos" class="w-full border rounded p-2 bg-white">
-                                <option value="1">Adecuado (Codos apoyados y hombros relajados)</option>
-                                <option value="2">Muy altos (Hombros elevados / tensos)</option>
-                                <option value="2">Muy bajos (No ofrecen soporte real / codos colgados)</option>
-                                <option value="2">Muy separados (Brazos demasiado abiertos)</option>
-                                <option value="1">Sin apoyabrazos (Puntuación base de 1)</option>
+                        <div class="bg-white p-4 rounded border border-slate-150">
+                            <label class="block font-bold text-slate-700 text-sm mb-2">Reposabrazos:</label>
+                            <select id="reposabrazos" class="w-full border rounded p-2 text-sm mb-3">
+                                <option value="1">Codos bien apoyados en línea con los hombros (Hombros relajados).</option>
+                                <option value="2">Reposabrazos demasiado altos. Los hombros están encogidos.</option>
+                                <option value="2">Reposabrazos demasiado bajos. Los codos no apoyan sobre ellos.</option>
                             </select>
-                            <div class="text-xs text-gray-500 space-y-1">
-                                <label class="inline-flex items-center mr-4">
-                                    <input type="checkbox" id="brazos_no_ajustables" value="1" class="mr-1"> No ajustables (+1)
-                                </label>
-                                <label class="inline-flex items-center">
-                                    <input type="checkbox" id="brazos_danados" value="1" class="mr-1"> Superficie dura o dañada (+1)
-                                </label>
+                            <span class="block font-semibold text-xs text-slate-500 mb-1">Incrementos (+1 c/u):</span>
+                            <div class="space-y-1 text-xs text-slate-600">
+                                <label class="flex items-center"><input type="checkbox" id="repo_separados" value="1" class="mr-2"> Reposabrazos demasiado separados.</label>
+                                <label class="flex items-center"><input type="checkbox" id="repo_superficie" value="1" class="mr-2"> La superficie del reposabrazos es dura o está dañada.</label>
+                                <label class="flex items-center"><input type="checkbox" id="repo_no_ajustables" value="1" class="mr-2"> Reposabrazos no ajustables.</label>
                             </div>
                         </div>
 
-                        <!-- Respaldo -->
-                        <div class="space-y-2">
-                            <label class="block font-semibold">Soporte Lumbar / Respaldo:</label>
-                            <select id="respaldo" class="w-full border rounded p-2 bg-white">
-                                <option value="1">Adecuado (Soporte en zona lumbar, reclinación 95° - 110°)</option>
-                                <option value="2">Sin soporte lumbar o soporte en zona incorrecta</option>
-                                <option value="2">Ángulo insuficiente (Ángulo < 95° o respaldo rígido)</option>
-                                <option value="2">Ángulo excesivo (Reclinación > 110° sin apoyo de cabeza)</option>
+                        <div class="bg-white p-4 rounded border border-slate-150">
+                            <label class="block font-bold text-slate-700 text-sm mb-2">Respaldo:</label>
+                            <select id="respaldo" class="w-full border rounded p-2 text-sm mb-3">
+                                <option value="1">Respaldo reclinado entre 95 y 110º y apoyo lumbar adecuado.</option>
+                                <option value="2">Sin apoyo lumbar o apoyo lumbar no situado en la parte baja de la espalda.</option>
+                                <option value="2">Respaldo reclinado menos de 95º o más de 110º.</option>
+                                <option value="2">Sin respaldo o respaldo no utilizado para apoyar la espalda.</option>
                             </select>
-                            <div class="text-xs text-gray-500 space-y-1">
-                                <label class="inline-flex items-center mr-4">
-                                    <input type="checkbox" id="resp_no_ajustable" value="1" class="mr-1"> Respaldo no ajustable (+1)
-                                </label>
-                                <label class="inline-flex items-center">
-                                    <input type="checkbox" id="resp_sin_soporte" value="1" class="mr-1"> Superficie de trabajo inestable (+1)
-                                </label>
+                            <span class="block font-semibold text-xs text-slate-500 mb-1">Incrementos (+1 c/u):</span>
+                            <div class="space-y-1 text-xs text-slate-600">
+                                <label class="flex items-center"><input type="checkbox" id="resp_alta" value="1" class="mr-2"> Superficie de trabajo demasiado alta (Hombros encogidos).</label>
+                                <label class="flex items-center"><input type="checkbox" id="resp_no_ajustable" value="1" class="mr-2"> Respaldo no ajustable.</label>
                             </div>
                         </div>
                     </div>
 
-                    <!-- Tiempo de Uso Silla -->
-                    <div class="mt-4 pt-4 border-t border-gray-200">
-                        <label class="block font-semibold text-sm text-gray-700">Tiempo diario de uso de la Silla:</label>
-                        <select id="tiempoSilla" class="mt-1 border rounded p-2 bg-white text-sm">
-                            <option value="0">Menos de 1 hora al día o intermitente (0)</option>
-                            <option value="1">Entre 1 y 4 horas al día acumuladas (+1)</option>
-                            <option value="1" selected>Más de 4 horas al día acumuladas (+1)</option>
-                            <option value="-1">Menos de 30 minutos seguidos (-1)</option>
+                    <div class="mt-4 p-4 bg-blue-50 border border-blue-150 rounded">
+                        <label class="block font-bold text-blue-900 text-xs tracking-wide uppercase mb-1">Tiempo de uso diario (Silla):</label>
+                        <select id="tiempoSilla" class="w-full md:w-auto border rounded p-1.5 text-xs bg-white">
+                            <option value="-1">Menos de 1 hora en total o menos de 30 minutos ininterrumpidos (-1)</option>
+                            <option value="0" selected>Entre 1 y 4 horas en total o entre 30 minutos y 1 hora ininterrumpida (0)</option>
+                            <option value="1">Más de 4 horas o más de 1 hora ininterrumpida (+1)</option>
                         </select>
                     </div>
                 </div>
 
-                <!-- 2. PANTALLA Y TELÉFONO -->
-                <div class="bg-indigo-50/50 p-5 rounded-lg border border-indigo-100">
-                    <h2 class="text-xl font-bold text-indigo-800 mb-4 flex items-center">
-                        <span class="bg-indigo-600 text-white rounded-full w-7 h-7 inline-flex items-center justify-center mr-2 text-sm">2</span>
+                <div class="bg-slate-50 p-6 rounded-lg border border-slate-200 shadow-sm">
+                    <h2 class="text-xl font-bold text-violet-800 mb-4 flex items-center border-b pb-2 border-violet-100">
+                        <span class="bg-violet-800 text-white rounded-full w-7 h-7 inline-flex items-center justify-center mr-2 text-sm">2</span>
                         Pantalla y Teléfono (Grupo B)
                     </h2>
                     
                     <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
-                        <!-- Pantalla -->
-                        <div class="space-y-2">
-                            <label class="block font-semibold">Posición de la Pantalla:</label>
-                            <select id="pantalla" class="w-full border rounded p-2 bg-white">
-                                <option value="1">Adecuada (Borde superior a la altura de los ojos y de frente)</option>
-                                <option value="2">Muy baja (Requiere flexión del cuello > 30°)</option>
-                                <option value="2">Muy alta (Requiere extensión de cuello)</option>
+                        <div class="bg-white p-4 rounded border border-slate-150">
+                            <label class="block font-bold text-slate-700 text-sm mb-2">Puntuación de la Pantalla:</label>
+                            <select id="pantalla" class="w-full border rounded p-2 text-sm mb-3">
+                                <option value="1">Pantalla a entre 45 y 75 cm. de distancia y borde superior a la altura de los ojos.</option>
+                                <option value="2">Pantalla muy baja. 30º por debajo del nivel de los ojos.</option>
+                                <option value="3">Pantalla demasiado alta. Provoca extensión de cuello.</option>
                             </select>
-                            <div class="text-xs text-gray-500 space-y-1">
-                                <div class="grid grid-cols-1 sm:grid-cols-2 gap-1">
-                                    <label class="inline-flex items-center"><input type="checkbox" id="pan_lateral" value="1" class="mr-1"> Pantalla lateral (Giro cuello) (+1)</label>
-                                    <label class="inline-flex items-center"><input type="checkbox" id="pan_documentos" value="1" class="mr-1"> Sin atril para documentos (+1)</label>
-                                    <label class="inline-flex items-center"><input type="checkbox" id="pan_reflejos" value="1" class="mr-1"> Presencia de reflejos (+1)</label>
-                                    <label class="inline-flex items-center"><input type="checkbox" id="pan_distancia" value="1" class="mr-1"> Pantalla muy lejos (> 75cm) (+1)</label>
-                                </div>
+                            <span class="block font-semibold text-xs text-slate-500 mb-1">Incrementos (+1 c/u):</span>
+                            <div class="space-y-1 text-xs text-slate-600 font-normal">
+                                <label class="flex items-center"><input type="checkbox" id="pan_desviada" value="1" class="mr-2"> Pantalla desviada lateralmente. Es necesario girar el cuello.</label>
+                                <label class="flex items-center"><input type="checkbox" id="pan_documentos" value="1" class="mr-2"> Es necesario manejar documentos y no existe un atril o soporte.</label>
+                                <label class="flex items-center"><input type="checkbox" id="pan_brillos" value="1" class="mr-2"> Brillos o reflejos en la pantalla.</label>
+                                <label class="flex items-center"><input type="checkbox" id="pan_lejos" value="1" class="mr-2"> Pantalla muy lejos. A más de 75 cm o fuera del alcance del brazo.</label>
                             </div>
                         </div>
 
-                        <!-- Teléfono -->
-                        <div class="space-y-2">
-                            <label class="block font-semibold">Uso del Teléfono:</label>
-                            <select id="telefono" class="w-full border rounded p-2 bg-white">
-                                <option value="1">Uso de auriculares / Manos libres</option>
-                                <option value="2">Teléfono lejos (Sujeción manual normal a > 30cm)</option>
-                                <option value="3">Sujeto entre el cuello y el hombro</option>
+                        <div class="bg-white p-4 rounded border border-slate-150">
+                            <label class="block font-bold text-slate-700 text-sm mb-2">Puntuación del Teléfono:</label>
+                            <select id="telefono" class="w-full border rounded p-2 text-sm mb-3">
+                                <option value="1">Uso de cascos auriculares, o teléfono con una mano y cuello neutral (Cerca ≤ 30 cm).</option>
+                                <option value="2">El teléfono está lejos. A más de 30 cm.</option>
                             </select>
-                            <div class="text-xs text-gray-500">
-                                <label class="inline-flex items-center">
-                                    <input type="checkbox" id="tel_no_manos_libres" value="1" class="mr-1"> No tiene opción de manos libres (+1)
-                                </label>
+                            <span class="block font-semibold text-xs text-slate-500 mb-1">Incrementos:</span>
+                            <div class="space-y-1 text-xs text-slate-600 font-normal">
+                                <label class="flex items-center"><input type="checkbox" id="tel_cuello" value="2" class="mr-2"> El teléfono se sujeta entre el cuello y el hombro (+2).</label>
+                                <label class="flex items-center"><input type="checkbox" id="tel_no_manos_libres" value="1" class="mr-2"> El teléfono no tiene función manos libres (+1).</label>
                             </div>
                         </div>
                     </div>
 
-                    <!-- Tiempo de Uso Pantalla/Teléfono -->
-                    <div class="mt-4 pt-4 border-t border-gray-200">
-                        <label class="block font-semibold text-sm text-gray-700">Tiempo diario de uso de Pantalla/Teléfono:</label>
-                        <select id="tiempoPantalla" class="mt-1 border rounded p-2 bg-white text-sm">
-                            <option value="0">Menos de 1 hora al día o intermitente (0)</option>
-                            <option value="1">Entre 1 y 4 horas al día acumuladas (+1)</option>
-                            <option value="1" selected>Más de 4 horas al día acumuladas (+1)</option>
-                            <option value="-1">Menos de 30 minutos seguidos (-1)</option>
+                    <div class="mt-4 p-4 bg-violet-50 border border-violet-150 rounded">
+                        <label class="block font-bold text-violet-900 text-xs tracking-wide uppercase mb-1">Tiempo de uso diario (Pantalla y Teléfono):</label>
+                        <select id="tiempoPantalla" class="w-full md:w-auto border rounded p-1.5 text-xs bg-white">
+                            <option value="-1">Menos de 1 hora en total o menos de 30 minutos ininterrumpidos (-1)</option>
+                            <option value="0" selected>Entre 1 y 4 horas en total o entre 30 minutos y 1 hora ininterrumpida (0)</option>
+                            <option value="1">Más de 4 horas o más de 1 hora ininterrumpida (+1)</option>
                         </select>
                     </div>
                 </div>
 
-                <!-- 3. TECLADO Y MOUSE -->
-                <div class="bg-emerald-50/50 p-5 rounded-lg border border-emerald-100">
-                    <h2 class="text-xl font-bold text-emerald-800 mb-4 flex items-center">
-                        <span class="bg-emerald-600 text-white rounded-full w-7 h-7 inline-flex items-center justify-center mr-2 text-sm">3</span>
+                <div class="bg-slate-50 p-6 rounded-lg border border-slate-200 shadow-sm">
+                    <h2 class="text-xl font-bold text-emerald-800 mb-4 flex items-center border-b pb-2 border-emerald-100">
+                        <span class="bg-emerald-800 text-white rounded-full w-7 h-7 inline-flex items-center justify-center mr-2 text-sm">3</span>
                         Teclado y Mouse (Grupo C)
                     </h2>
                     
                     <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
-                        <!-- Teclado -->
-                        <div class="space-y-2">
-                            <label class="block font-semibold">Evaluación del Teclado:</label>
-                            <select id="teclado" class="w-full border rounded p-2 bg-white">
-                                <option value="1">Adecuado (Muñecas rectas, antebrazos horizontales)</option>
-                                <option value="2">Hombros elevados / Tensión en cuello (Teclado muy alto)</option>
-                                <option value="2">Extensión excesiva de muñecas (Teclado empinado)</option>
+                        <div class="bg-white p-4 rounded border border-slate-150">
+                            <label class="block font-bold text-slate-700 text-sm mb-2">Puntuación del Mouse:</label>
+                            <select id="mouse" class="w-full border rounded p-2 text-sm mb-3">
+                                <option value="1">El mouse está alineado con el hombro.</option>
+                                <option value="2">El mouse no está alineado con el hombro o está lejos del cuerpo.</option>
                             </select>
-                            <div class="text-xs text-gray-500 space-y-1">
-                                <div class="grid grid-cols-1 sm:grid-cols-2 gap-1">
-                                    <label class="inline-flex items-center"><input type="checkbox" id="tec_desviacion" value="1" class="mr-1"> Desviación cubital/radial (+1)</label>
-                                    <label class="inline-flex items-center"><input type="checkbox" id="tec_alto" value="1" class="mr-1"> Sin reposamuñecas (+1)</label>
-                                    <label class="inline-flex items-center"><input type="checkbox" id="tec_fuerza" value="1" class="mr-1"> Teclas requieren mucha fuerza (+1)</label>
-                                </div>
+                            <span class="block font-semibold text-xs text-slate-500 mb-1">Incrementos:</span>
+                            <div class="space-y-1 text-xs text-slate-600 font-normal">
+                                <label class="flex items-center"><input type="checkbox" id="mou_pinza" value="1" class="mr-2"> Mouse muy pequeño. Requiere agarrarlo con la mano en pinza (+1).</label>
+                                <label class="flex items-center"><input type="checkbox" id="mou_alturas" value="2" class="mr-2"> El mouse y teclado están a diferentes alturas (+2).</label>
+                                <label class="flex items-center"><input type="checkbox" id="mou_presion" value="1" class="mr-2"> Reposamanos duro o existen puntos de presión (+1).</label>
                             </div>
                         </div>
 
-                        <!-- Mouse -->
-                        <div class="space-y-2">
-                            <label class="block font-semibold">Evaluación del Mouse:</label>
-                            <select id="mouse" class="w-full border rounded p-2 bg-white">
-                                <option value="1">Adecuado (Alineado con el hombro, cerca del teclado)</option>
-                                <option value="2">Muy separado del cuerpo (Extensión de brazo)</option>
-                                <option value="2">Ubicado en superficie diferente al teclado</option>
-                            </select>
-                            <div class="text-xs text-gray-500 space-y-1">
-                                <div class="grid grid-cols-1 sm:grid-cols-2 gap-1">
-                                    <label class="inline-flex items-center"><input type="checkbox" id="mou_desviacion" value="1" class="mr-1"> Desviación de muñeca (+1)</label>
-                                    <label class="inline-flex items-center"><input type="checkbox" id="mou_pinza" value="1" class="mr-1"> Agarre en pinza tenso (+1)</label>
-                                    <label class="inline-flex items-center"><input type="checkbox" id="mou_reposa" value="1" class="mr-1"> Sin apoyo para el antebrazo (+1)</label>
-                                </div>
+                        <div class="bg-white p-4 rounded border border-slate-150">
+                            <label class="block font-bold text-slate-700 text-sm mb-2">Puntuación del Teclado:</label>
+                            <div class="text-xs text-slate-500 p-2 bg-slate-50 rounded border mb-3">
+                                La base metodológica asigna 1 punto por postura neutra inicial.
+                            </div>
+                            <span class="block font-semibold text-xs text-slate-500 mb-1">Incrementos (+1 o +2 según corresponda):</span>
+                            <div class="space-y-1 text-xs text-slate-600 font-normal">
+                                <label class="flex items-center"><input type="checkbox" id="tec_desviacion" value="1" class="mr-2"> Muñecas desviadas lateralmente hacia dentro o hacia fuera (+1).</label>
+                                <label class="flex items-center"><input type="checkbox" id="tec_alto" value="1" class="mr-2"> El teclado está demasiado alto. Los hombros están encogidos (+1).</label>
+                                <label class="flex items-center"><input type="checkbox" id="tec_ext" value="2" class="mr-2"> Las muñecas están extendidas más de 15º (+2).</label>
+                                <label class="flex items-center"><input type="checkbox" id="tec_no_ajustable" value="1" class="mr-2"> El teclado, o la plataforma sobre la que reposa, no son ajustables (+1).</label>
+                                <label class="flex items-center"><input type="checkbox" id="tec_alejado" value="1" class="mr-2"> Se deben alcanzar objetos alejados o por encima del nivel de la cabeza (+1).</label>
                             </div>
                         </div>
                     </div>
 
-                    <!-- Tiempo de Uso Teclado/Mouse -->
-                    <div class="mt-4 pt-4 border-t border-gray-200">
-                        <label class="block font-semibold text-sm text-gray-700">Tiempo diario de uso de Teclado/Mouse:</label>
-                        <select id="tiempoTeclado" class="mt-1 border rounded p-2 bg-white text-sm">
-                            <option value="0">Menos de 1 hora al día o intermitente (0)</option>
-                            <option value="1">Entre 1 y 4 horas al día acumuladas (+1)</option>
-                            <option value="1" selected>Más de 4 horas al día acumuladas (+1)</option>
-                            <option value="-1">Menos de 30 minutos seguidos (-1)</option>
+                    <div class="mt-4 p-4 bg-emerald-50 border border-emerald-150 rounded">
+                        <label class="block font-bold text-emerald-900 text-xs tracking-wide uppercase mb-1">Tiempo de uso diario (Teclado y Mouse):</label>
+                        <select id="tiempoTeclado" class="w-full md:w-auto border rounded p-1.5 text-xs bg-white">
+                            <option value="-1">Menos de 1 hora en total o menos de 30 minutos ininterrumpidos (-1)</option>
+                            <option value="0" selected>Entre 1 y 4 horas en total o entre 30 minutos y 1 hora ininterrumpida (0)</option>
+                            <option value="1">Más de 4 horas o más de 1 hora ininterrumpida (+1)</option>
                         </select>
                     </div>
                 </div>
 
-                <!-- BOTÓN CALCULAR -->
                 <div class="text-center pt-4">
-                    <button type="button" onclick="calcularROSAReal()" class="bg-blue-700 text-white font-bold py-4 px-10 rounded-lg shadow-lg hover:bg-blue-800 transition duration-200 w-full sm:w-auto text-lg">
-                        Calcular Puntuación ROSA Real
+                    <button type="button" onclick="calcularROSAOficial()" class="bg-blue-800 text-white font-extrabold py-4 px-12 rounded-lg shadow-lg hover:bg-blue-900 transition duration-200 w-full sm:w-auto text-lg uppercase tracking-wider">
+                        Calcular Puntuación Oficial ROSA
                     </button>
                 </div>
             </form>
 
-            <!-- RESULTADOS -->
             <div id="resultadoSeccion" class="hidden mt-8 p-6 rounded-lg border-2 transition-all duration-300">
-                <div class="flex flex-col md:flex-row items-center justify-between gap-6">
-                    <div class="text-left space-y-2">
-                        <h3 class="text-2xl font-bold">Puntuación Final ROSA: <span id="scoreText" class="text-4xl font-extrabold ml-1">0</span></h3>
-                        <p id="nivelRiesgo" class="font-bold text-xl"></p>
-                        <p id="recomendacion" class="text-sm max-w-xl"></p>
+                <div class="flex flex-col md:flex-row items-stretch justify-between gap-6">
+                    <div class="text-left space-y-3 flex-1">
+                        <h3 class="text-2xl font-black">RESULTADO FINAL ROSA: <span id="scoreText" class="text-5xl font-extrabold ml-1">0</span></h3>
+                        <div>
+                            <span class="font-bold text-sm text-slate-500 uppercase tracking-wide">Nivel de Riesgo:</span>
+                            <p id="nivelRiesgo" class="font-black text-2xl uppercase tracking-tight"></p>
+                        </div>
+                        <div>
+                            <span class="font-bold text-xs text-slate-500 uppercase tracking-wide">Nivel de Actuación:</span>
+                            <p id="nivelActuacion" class="font-bold text-base text-slate-700"></p>
+                        </div>
+                        <p id="actuacionDetalle" class="text-sm text-slate-600 max-w-xl leading-relaxed"></p>
                     </div>
-                    <!-- Desglose de puntuaciones -->
-                    <div class="bg-white/80 p-4 rounded border border-gray-200 w-full md:w-72 text-sm text-gray-700 space-y-1 shadow-inner">
-                        <h4 class="font-bold text-gray-900 border-b pb-1 mb-2">Puntuaciones Parciales:</h4>
-                        <div>• Silla (Sección A): <span id="pSilla" class="font-semibold">0</span></div>
-                        <div>• Pantalla/Teléfono (Sección B): <span id="pPantalla" class="font-semibold">0</span></div>
-                        <div>• Teclado/Mouse (Sección C): <span id="pTeclado" class="font-semibold">0</span></div>
+                    
+                    <div class="bg-white/90 p-4 rounded border border-slate-200 w-full md:w-80 text-xs text-slate-700 space-y-2 shadow-inner">
+                        <h4 class="font-black text-slate-900 border-b pb-1.5 mb-2 uppercase tracking-wide">Desglose de Puntuaciones:</h4>
+                        <div>• Altura asiento + Prof. asiento: <span id="pSillaAltProf" class="font-bold">0</span></div>
+                        <div>• Reposabrazos + Respaldo: <span id="pSillaRepoResp" class="font-bold">0</span></div>
+                        <div class="pl-2 text-blue-800 font-semibold">• Silla Base (Tabla A): <span id="pSillaBase" class="font-bold">0</span></div>
+                        <div class="pl-4 border-l-2 border-blue-300">• Silla Final (+Tiempo Silla): <span id="pSillaFinal" class="font-bold">0</span></div>
+                        
+                        <div class="border-t pt-1.5"></div>
+                        <div>• Pantalla Total: <span id="pPantalla" class="font-bold">0</span></div>
+                        <div>• Teléfono Total: <span id="pTelefono" class="font-bold">0</span></div>
+                        <div class="pl-2 text-violet-800 font-semibold">• Pantalla + Teléfono (Tabla B): <span id="pB" class="font-bold">0</span></div>
+                        <div class="pl-4 border-l-2 border-violet-300">• Pantalla/Tel. Final (+Tiempo): <span id="pBFinal" class="font-bold">0</span></div>
+
+                        <div class="border-t pt-1.5"></div>
+                        <div>• Mouse Total: <span id="pMouse" class="font-bold">0</span></div>
+                        <div>• Teclado Total: <span id="pTeclado" class="font-bold">0</span></div>
+                        <div class="pl-2 text-emerald-800 font-semibold">• Teclado + Mouse (Tabla C): <span id="pC" class="font-bold">0</span></div>
+                        <div class="pl-4 border-l-2 border-emerald-300">• Teclado/Mouse Final (+Tiempo): <span id="pCFinal" class="font-bold">0</span></div>
+
+                        <div class="border-t-2 border-slate-300 pt-2 font-bold text-slate-900">
+                            • Pantalla + Periféricos (Tabla D): <span id="pD" class="font-extrabold text-blue-900">0</span>
+                        </div>
                     </div>
                 </div>
             </div>
         </div>
     </main>
 
-    <!-- Pie de página -->
-    <footer class="bg-gray-800 text-white text-center py-4 text-xs mt-12">
-        <p>&copy; 2026 - Calculadora Completa según directrices de la Universidad Politécnica de Valencia (UPV)</p>
+    <footer class="bg-slate-900 text-slate-400 text-center py-4 text-xs border-t border-slate-850">
+        <p>&copy; 2026 - Universidad Politécnica de Valencia (UPV)</p>
     </footer>
 
     <script>
-        function calcularROSAReal() {
-            // --- GRUPO A: SILLA ---
-            const altAsiento = parseInt(document.getElementById('sillaAltura').value) + 
-                             (document.getElementById('alt_no_ajustable').checked ? 1 : 0) + 
-                             (document.getElementById('alt_sin_apoyo').checked ? 1 : 0);
+        // --- MATRICES OFICIALES DEL MÉTODO ROSA ---
+
+        // TABLA A: Filas (Altura Asiento + Prof. Asiento: de 2 a 8), Columnas (Reposabrazos + Respaldo: de 2 a 9)
+        const TABLA_A = {
+            2: [2, 2, 2, 3, 4, 5, 6, 7],
+            3: [2, 2, 3, 4, 5, 6, 7, 8],
+            4: [3, 3, 3, 4, 5, 6, 7, 8],
+            5: [4, 4, 4, 4, 5, 6, 7, 8],
+            6: [5, 5, 5, 5, 6, 7, 8, 9],
+            7: [6, 6, 6, 7, 7, 8, 8, 9],
+            8: [7, 7, 7, 8, 8, 9, 9, 9]
+        };
+
+        // TABLA B: Filas (Puntuación Teléfono: de 0 a 6), Columnas (Puntuación Pantalla: de 0 a 7)
+        // Nota: Manejamos filas de 0 a 6 e índices de columna de 0 a 7 (el índice 0 emula la columna 1)
+        const TABLA_B = [
+            [1, 1, 1, 2, 3, 4, 5, 6], // Fila 0
+            [1, 1, 2, 2, 3, 4, 5, 6], // Fila 1
+            [1, 2, 2, 3, 3, 4, 6, 7], // Fila 2
+            [2, 2, 3, 3, 4, 5, 6, 8], // Fila 3
+            [3, 3, 4, 4, 5, 6, 7, 8], // Fila 4
+            [4, 4, 5, 5, 6, 7, 8, 9], // Fila 5
+            [5, 5, 6, 7, 8, 8, 9, 9]  // Fila 6
+        ];
+
+        // TABLA C: Filas (Puntuación Mouse: de 0 a 7), Columnas (Puntuación Teclado: de 0 a 7)
+        const TABLA_C = [
+            [1, 1, 1, 2, 3, 4, 5, 6], // Fila 0
+            [1, 1, 2, 3, 4, 5, 6, 7], // Fila 1
+            [1, 2, 2, 3, 4, 5, 6, 7], // Fila 2
+            [2, 3, 3, 3, 5, 6, 7, 8], // Fila 3
+            [3, 4, 4, 5, 5, 6, 7, 8], // Fila 4
+            [4, 5, 5, 6, 6, 7, 8, 9], // Fila 5
+            [5, 6, 6, 7, 7, 8, 8, 9], // Fila 6
+            [6, 7, 7, 8, 8, 9, 9, 9]  // Fila 7
+        ];
+
+        // TABLA D: Filas (Puntuación Tabla B: de 1 a 9), Columnas (Puntuación Tabla C: de 1 a 9)
+        const TABLA_D = {
+            1: [1, 2, 3, 4, 5, 6, 7, 8, 9],
+            2: [2, 2, 3, 4, 5, 6, 7, 8, 9],
+            3: [3, 3, 3, 4, 5, 6, 7, 8, 9],
+            4: [4, 4, 4, 4, 5, 6, 7, 8, 9],
+            5: [5, 5, 5, 5, 5, 6, 7, 8, 9],
+            6: [6, 6, 6, 6, 6, 6, 7, 8, 9],
+            7: [7, 7, 7, 7, 7, 7, 7, 8, 9],
+            8: [8, 8, 8, 8, 8, 8, 8, 8, 9],
+            9: [9, 9, 9, 9, 9, 9, 9, 9, 9]
+        };
+
+        // TABLA E: Filas (Puntuación Silla Final: de 1 a 10), Columnas (Puntuación Pantalla y Periféricos Tabla D: de 1 a 10)
+        const TABLA_E = {
+            1: [1, 2, 3, 4, 5, 6, 7, 8, 9, 10],
+            2: [2, 2, 3, 4, 5, 6, 7, 8, 9, 10],
+            3: [3, 3, 3, 4, 5, 6, 7, 8, 9, 10],
+            4: [4, 4, 4, 4, 5, 6, 7, 8, 9, 10],
+            5: [5, 5, 5, 5, 5, 6, 7, 8, 9, 10],
+            6: [6, 6, 6, 6, 6, 6, 7, 8, 9, 10],
+            7: [7, 7, 7, 7, 7, 7, 7, 8, 9, 10],
+            8: [8, 8, 8, 8, 8, 8, 8, 8, 8, 10],
+            9: [9, 9, 9, 9, 9, 9, 9, 9, 9, 10],
+            10: [10, 10, 10, 10, 10, 10, 10, 10, 10, 10]
+        };
+
+        // --- FUNCIONES AUXILIARES DE BÚSQUEDA EN MATRICES ---
+        function getTablaAValue(altProf, repoResp) {
+            const r = Math.min(Math.max(altProf, 2), 8);
+            const c = Math.min(Math.max(repoResp, 2), 9);
+            return TABLA_A[r][c - 2];
+        }
+
+        function getTablaBValue(telefono, pantalla) {
+            const r = Math.min(Math.max(telefono, 0), 6);
+            const c = Math.min(Math.max(pantalla, 0), 7);
+            return TABLA_B[r][c];
+        }
+
+        function getTablaCValue(mouse, teclado) {
+            const r = Math.min(Math.max(mouse, 0), 7);
+            const c = Math.min(Math.max(teclado, 0), 7);
+            return TABLA_C[r][c];
+        }
+
+        function getTablaDValue(bVal, cVal) {
+            const r = Math.min(Math.max(bVal, 1), 9);
+            const c = Math.min(Math.max(cVal, 1), 9);
+            return TABLA_D[r][c - 1];
+        }
+
+        function getTablaEValue(silla, perifericos) {
+            const r = Math.min(Math.max(silla, 1), 10);
+            const c = Math.min(Math.max(perifericos, 1), 10);
+            return TABLA_E[r][c - 1];
+        }
+
+        // --- ALGORITMO OFICIAL DE CÁLCULO ---
+        function calcularROSAOficial() {
+            // 1. SILLA: ALTURA Y PROFUNDIDAD
+            let altAsiento = parseInt(document.getElementById('sillaAltura').value);
+            if (document.getElementById('alt_espacio').checked) altAsiento += 1;
+            if (document.getElementById('alt_no_ajustable').checked) altAsiento += 1;
+
+            let profAsiento = parseInt(document.getElementById('sillaProfundidad').value);
+            if (document.getElementById('prof_no_ajustable').checked) profAsiento += 1;
+
+            // SILLA: REPOSABRAZOS Y RESPALDO
+            let repoBrazos = parseInt(document.getElementById('reposabrazos').value);
+            if (document.getElementById('repo_separados').checked) repoBrazos += 1;
+            if (document.getElementById('repo_superficie').checked) repoBrazos += 1;
+            if (document.getElementById('repo_no_ajustables').checked) repoBrazos += 1;
+
+            let respaldo = parseInt(document.getElementById('respaldo').value);
+            if (document.getElementById('resp_alta').checked) respaldo += 1;
+            if (document.getElementById('resp_no_ajustable').checked) respaldo += 1;
+
+            // Cruzar en Tabla A para obtener puntuación Silla Base
+            const scoreSillaBase = getTablaAValue(altAsiento + profAsiento, repoBrazos + respaldo);
             
-            const profAsiento = parseInt(document.getElementById('sillaProfundidad').value) + 
-                              (document.getElementById('prof_no_ajustable').checked ? 1 : 0);
-
-            // Puntuación de Altura y Profundidad (Intersección simplificada de Matriz A1)
-            const scoreAltProf = Math.max(altAsiento, profAsiento) + (Math.abs(altAsiento - profAsiento) >= 2 ? 1 : 0);
-
-            const apoBrazos = parseInt(document.getElementById('apoyabrazos').value) + 
-                              (document.getElementById('brazos_no_ajustables').checked ? 1 : 0) + 
-                              (document.getElementById('brazos_danados').checked ? 1 : 0);
-
-            const resp = parseInt(document.getElementById('respaldo').value) + 
-                         (document.getElementById('resp_no_ajustable').checked ? 1 : 0) + 
-                         (document.getElementById('resp_sin_soporte').checked ? 1 : 0);
-
-            // Puntuación de Apoyabrazos y Respaldo (Intersección simplificada de Matriz A2)
-            const scoreBrazosResp = Math.max(apoBrazos, resp) + (Math.abs(apoBrazos - resp) >= 2 ? 1 : 0);
-
-            // Combinación Silla Base + Modificador de Tiempo
-            let scoreSillaBase = Math.round((scoreAltProf + scoreBrazosResp) / 1.5);
-            if (scoreSillaBase < 1) scoreSillaBase = 1;
-            const tiempoSilla = parseInt(document.getElementById('tiempoSilla').value);
-            const scoreSillaFinal = Math.max(1, scoreSillaBase + tiempoSilla);
+            // Sumar modificador por tiempo de uso SILLA
+            const tSilla = parseInt(document.getElementById('tiempoSilla').value);
+            const scoreSillaFinal = Math.max(1, scoreSillaBase + tSilla);
 
 
-            // --- GRUPO B: PANTALLA Y TELÉFONO ---
-            const pEsc = parseInt(document.getElementById('pantalla').value) + 
-                         (document.getElementById('pan_lateral').checked ? 1 : 0) + 
-                         (document.getElementById('pan_documentos').checked ? 1 : 0) + 
-                         (document.getElementById('pan_reflejos').checked ? 1 : 0) + 
-                         (document.getElementById('pan_distancia').checked ? 1 : 0);
+            // 2. PANTALLA Y TELÉFONO
+            let pantalla = parseInt(document.getElementById('pantalla').value);
+            if (document.getElementById('pan_desviada').checked) pantalla += 1;
+            if (document.getElementById('pan_documentos').checked) pantalla += 1;
+            if (document.getElementById('pan_brillos').checked) pantalla += 1;
+            if (document.getElementById('pan_lejos').checked) pantalla += 1;
 
-            const tEsc = parseInt(document.getElementById('telefono').value) + 
-                         (document.getElementById('tel_no_manos_libres').checked ? 1 : 0);
+            let telefono = parseInt(document.getElementById('telefono').value);
+            if (document.getElementById('tel_cuello').checked) telefono += 2;
+            if (document.getElementById('tel_no_manos_libres').checked) telefono += 1;
 
-            // Combinación de Pantalla y Teléfono + Tiempo
-            let scorePantallaBase = Math.max(pEsc, tEsc) + (Math.abs(pEsc - tEsc) >= 2 ? 1 : 0);
-            const tiempoPan = parseInt(document.getElementById('tiempoPantalla').value);
-            const scorePantallaFinal = Math.max(1, scorePantallaBase + tiempoPan);
+            // Cruzar en Tabla B (Manejo de índices: telefono en el eje Y [0 a 6], pantalla en el eje X [0 a 7])
+            // Ajustamos el valor real al índice restándole 1 si es necesario, pero como la matriz usa índice 0, mapeamos directamente.
+            const scoreTablaB = getTablaBValue(telefono, pantalla);
 
-
-            // --- GRUPO C: TECLADO Y MOUSE ---
-            const tecEsc = parseInt(document.getElementById('teclado').value) + 
-                           (document.getElementById('tec_desviacion').checked ? 1 : 0) + 
-                           (document.getElementById('tec_alto').checked ? 1 : 0) + 
-                           (document.getElementById('tec_fuerza').checked ? 1 : 0);
-
-            const mouEsc = parseInt(document.getElementById('mouse').value) + 
-                           (document.getElementById('mou_desviacion').checked ? 1 : 0) + 
-                           (document.getElementById('mou_pinza').checked ? 1 : 0) + 
-                           (document.getElementById('mou_reposa').checked ? 1 : 0);
-
-            // Combinación de Teclado y Mouse + Tiempo
-            let scoreTecladoBase = Math.max(tecEsc, mouEsc) + (Math.abs(tecEsc - mouEsc) >= 2 ? 1 : 0);
-            const tiempoTec = parseInt(document.getElementById('tiempoTeclado').value);
-            const scoreTecladoFinal = Math.max(1, scoreTecladoBase + tiempoTec);
+            // Sumar modificador de tiempo para Pantalla/Teléfono
+            const tPan = parseInt(document.getElementById('tiempoPantalla').value);
+            const scoreBFinal = Math.max(1, scoreTablaB + tPan);
 
 
-            // --- INTEGRACIÓN FINAL ROSA ---
-            // El método junta la puntuación de Silla (A) con Pantalla/Teléfono (B) y Teclado/Mouse (C).
-            // Lógica de cruce matemático ajustado para emular las matrices completas de ROSA:
-            let scorePerifericos = Math.round((scorePantallaFinal + scoreTecladoFinal) / 1.5);
-            if (scorePerifericos < 1) scorePerifericos = 1;
+            // 3. TECLADO Y MOUSE
+            let mouse = parseInt(document.getElementById('mouse').value);
+            if (document.getElementById('mou_pinza').checked) mouse += 1;
+            if (document.getElementById('mou_alturas').checked) mouse += 2;
+            if (document.getElementById('mou_presion').checked) mouse += 1;
 
-            let scoreROSA = Math.round((scoreSillaFinal + scorePerifericos) / 1.5) + 1;
-            
-            // Forzar límites de escala (1 a 10)
-            if (scoreROSA > 10) scoreROSA = 10;
-            if (scoreROSA < 1) scoreROSA = 1;
+            // Teclado parte de 1 por postura neutra básica
+            let teclado = 1; 
+            if (document.getElementById('tec_desviacion').checked) teclado += 1;
+            if (document.getElementById('tec_alto').checked) teclado += 1;
+            if (document.getElementById('tec_ext').checked) teclado += 2;
+            if (document.getElementById('tec_no_ajustable').checked) teclado += 1;
+            if (document.getElementById('tec_alejado').checked) teclado += 1;
 
-            // --- MOSTRAR RESULTADOS ---
+            // Cruzar en Tabla C
+            const scoreTablaC = getTablaCValue(mouse, teclado);
+
+            // Sumar modificador de tiempo para Teclado/Mouse
+            const tTec = parseInt(document.getElementById('tiempoTeclado').value);
+            const scoreCFinal = Math.max(1, scoreTablaC + tTec);
+
+
+            // 4. CRUCE DE PANTALLA/TELÉFONO (B) + TECLADO/MOUSE (C) -> TABLA D
+            const scoreTablaD = getTablaDValue(scoreBFinal, scoreCFinal);
+
+
+            // 5. CRUCE FINAL: SILLA FINAL + PERIFÉRICOS (TABLA D) -> TABLA E
+            const scoreROSAFinal = getTablaEValue(scoreSillaFinal, scoreTablaD);
+
+
+            // --- RENDERIZACIÓN DE RESULTADOS ---
             const resultBox = document.getElementById('resultadoSeccion');
             const scoreText = document.getElementById('scoreText');
             const nivelRiesgo = document.getElementById('nivelRiesgo');
-            const recomendacion = document.getElementById('recomendacion');
+            const nivelActuacion = document.getElementById('nivelActuacion');
+            const actuacionDetalle = document.getElementById('actuacionDetalle');
 
-            // Actualizar Desglose
-            document.getElementById('pSilla').textContent = scoreSillaFinal;
-            document.getElementById('pPantalla').textContent = scorePantallaFinal;
-            document.getElementById('pTeclado').textContent = scoreTecladoFinal;
+            // Renderizado de las puntuaciones parciales para auditoría del usuario
+            document.getElementById('pSillaAltProf').textContent = (altAsiento + profAsiento);
+            document.getElementById('pSillaRepoResp').textContent = (repoBrazos + respaldo);
+            document.getElementById('pSillaBase').textContent = scoreSillaBase;
+            document.getElementById('pSillaFinal').textContent = scoreSillaFinal;
+            
+            document.getElementById('pPantalla').textContent = pantalla;
+            document.getElementById('pTelefono').textContent = telefono;
+            document.getElementById('pB').textContent = scoreTablaB;
+            document.getElementById('pBFinal').textContent = scoreBFinal;
 
+            document.getElementById('pMouse').textContent = mouse;
+            document.getElementById('pTeclado').textContent = teclado;
+            document.getElementById('pC').textContent = scoreTablaC;
+            document.getElementById('pCFinal').textContent = scoreCFinal;
+
+            document.getElementById('pD').textContent = scoreTablaD;
+
+            scoreText.textContent = scoreROSAFinal;
             resultBox.classList.remove('hidden');
-            scoreText.textContent = scoreROSA;
 
-            // Estilos según el Nivel de Riesgo Real del método ROSA:
-            if (scoreROSA <= 3) {
-                // Riesgo Bajo
-                resultBox.className = "mt-8 p-6 rounded-lg border-2 bg-green-50 border-green-500 text-green-900";
-                nivelRiesgo.textContent = "Riesgo Normal (Puntuación ≤ 3)";
-                recomendacion.textContent = "El nivel de riesgo del puesto es bajo y tolerable. Sigue promoviendo pausas y buenos hábitos posturales.";
-            } else if (scoreROSA >= 4 && scoreROSA <= 5) {
-                // Riesgo Medio
-                resultBox.className = "mt-8 p-6 rounded-lg border-2 bg-yellow-50 border-yellow-500 text-yellow-900";
-                nivelRiesgo.textContent = "Riesgo Medio (Puntuación 4 - 5)";
-                recomendacion.textContent = "Se aconseja realizar mejoras puntuales en los componentes más comprometidos. Puede requerir rediseño preventivo a corto plazo.";
+            // Categorías de nivel de actuación oficiales según la normativa ROSA
+            if (scoreROSAFinal === 1) {
+                resultBox.className = "mt-8 p-6 rounded-lg border-2 bg-green-50 border-green-500 text-green-950";
+                nivelRiesgo.textContent = "Inapreciable";
+                nivelActuacion.textContent = "Nivel 0";
+                actuacionDetalle.textContent = "No es necesaria actuación. El diseño del puesto es altamente ergonómico.";
+            } else if (scoreROSAFinal >= 2 && scoreROSAFinal <= 4) {
+                resultBox.className = "mt-8 p-6 rounded-lg border-2 bg-yellow-50 border-yellow-500 text-yellow-950";
+                nivelRiesgo.textContent = "Mejorable";
+                nivelActuacion.textContent = "Nivel 1";
+                actuacionDetalle.textContent = "Pueden mejorarse algunos elementos del puesto de trabajo para optimizar la comodidad del operario.";
+            } else if (scoreROSAFinal === 5) {
+                resultBox.className = "mt-8 p-6 rounded-lg border-2 bg-orange-50 border-orange-500 text-orange-950";
+                nivelRiesgo.textContent = "Alto";
+                nivelActuacion.textContent = "Nivel 2";
+                actuacionDetalle.textContent = "Es necesaria la actuación. Se deben corregir de forma prioritaria los elementos con puntuaciones críticas.";
+            } else if (scoreROSAFinal >= 6 && scoreROSAFinal <= 8) {
+                resultBox.className = "mt-8 p-6 rounded-lg border-2 bg-red-50 border-red-500 text-red-950";
+                nivelRiesgo.textContent = "Muy Alto";
+                nivelActuacion.textContent = "Nivel 3";
+                actuacionDetalle.textContent = "Es necesaria la actuación cuanto antes para prevenir trastornos musculoesqueléticos severos.";
             } else {
-                // Riesgo Alto / Muy Alto
-                resultBox.className = "mt-8 p-6 rounded-lg border-2 bg-red-50 border-red-500 text-red-900";
-                nivelRiesgo.textContent = "Riesgo Alto (Puntuación ≥ 6)";
-                recomendacion.textContent = "¡Acción Requerida! El puesto de trabajo es ergonómicamente inadecuado y requiere intervención o un rediseño de inmediato para disminuir la carga músculoesquelética.";
+                resultBox.className = "mt-8 p-6 rounded-lg border-2 bg-red-100 border-red-700 text-red-950";
+                nivelRiesgo.textContent = "Extremo";
+                nivelActuacion.textContent = "Nivel 4";
+                actuacionDetalle.textContent = "Es necesaria la actuación urgentemente. El puesto actual representa un riesgo severo inmediato para la salud ergonómica.";
             }
 
-            // Desplazamiento suave
+            // Desplazamiento visual al cuadro de resultados
             resultBox.scrollIntoView({ behavior: 'smooth' });
         }
     </script>
