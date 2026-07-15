@@ -3,424 +3,213 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Plataforma de Evaluación Ergonómica - RULA & ROSA</title>
-    <style>
-        /* --- CONFIGURACIÓN BASE (Gris Claro, Azul Oscuro y Blanco) --- */
-        body {
-            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
-            color: #1e293b; /* Gris muy oscuro para texto */
-            margin: 0;
-            padding: 0;
-            min-height: 100vh;
-            position: relative;
-            padding-bottom: 80px;
-            background-color: #f1f5f9; /* Fondo Gris Claro */
-            
-            /* Sutil patrón de fondo profesional */
-            background-image: linear-gradient(rgba(241, 245, 249, 0.9), rgba(241, 245, 249, 0.9)), 
-                              url('https://images.unsplash.com/photo-1497366216548-37526070297c?q=80&w=1280');
-            background-size: cover;
-            background-position: center;
-            background-attachment: fixed;
-            background-repeat: no-repeat;
-        }
-
-        /* Encabezado Azul Oscuro */
-        header {
-            background-color: #0f172a; /* Azul Oscuro profundo */
-            color: #ffffff;
-            text-align: center;
-            padding: 35px 15px;
-            box-shadow: 0 4px 15px rgba(15, 23, 42, 0.15);
-            border-bottom: 5px solid #2563eb; /* Línea de acento Azul Brillante */
-        }
-
-        header h1 {
-            margin: 0;
-            font-size: 28px;
-            font-weight: 600;
-            letter-spacing: 0.5px;
-        }
-
-        header p {
-            margin: 8px 0 0 0;
-            font-size: 13px;
-            letter-spacing: 2px;
-            color: #93c5fd; /* Azul claro para contraste */
-            text-transform: uppercase;
-        }
-
-        /* Tarjeta Central Blanca */
-        .container {
-            max-width: 750px;
-            background-color: #ffffff; /* Blanco Puro */
-            margin: 40px auto;
-            padding: 35px;
-            border-radius: 10px;
-            border: 1px solid #e2e8f0; /* Borde gris suave */
-            box-shadow: 0 10px 25px rgba(15, 23, 42, 0.08);
-            box-sizing: border-box;
-        }
-
-        @media (max-width: 768px) {
-            .container {
-                margin: 20px 15px;
-                padding: 20px;
-            }
-            header h1 {
-                font-size: 22px;
-            }
-        }
-
-        /* Títulos de sección en Azul Oscuro */
-        .section-title {
-            color: #1e3a8a; /* Azul Marino */
-            border-left: 5px solid #2563eb; /* Detalle azul brillante */
-            padding-left: 12px;
-            margin: 30px 0 20px 0;
-            font-size: 18px;
-            font-weight: bold;
-            text-transform: uppercase;
-            letter-spacing: 0.5px;
-        }
-
-        /* Subtítulos para organizar parámetros internos */
-        .subsection-title {
-            font-size: 14px;
-            font-weight: bold;
-            color: #475569;
-            margin-bottom: 10px;
-            text-transform: uppercase;
-        }
-
-        /* Formularios */
-        .form-group {
-            margin-bottom: 25px;
-        }
-
-        label {
-            display: block;
-            font-weight: 600;
-            margin-bottom: 8px;
-            color: #0f172a; /* Texto de etiquetas en Azul Oscuro */
-            font-size: 14px;
-        }
-
-        select {
-            width: 100%;
-            padding: 12px;
-            border: 1.5px solid #cbd5e1; /* Gris medio */
-            border-radius: 6px;
-            background-color: #ffffff;
-            font-size: 14px;
-            color: #1e293b;
-            outline: none;
-            transition: all 0.25s ease;
-            box-sizing: border-box;
-        }
-
-        select:focus {
-            border-color: #2563eb; /* Foco cambia a Azul */
-            box-shadow: 0 0 5px rgba(37, 99, 235, 0.2);
-        }
-
-        /* Contenedor de Checkboxes Acumulativos */
-        .checkbox-container {
-            background-color: #f8fafc; /* Gris extra claro */
-            padding: 15px;
-            border-radius: 6px;
-            border: 1px dashed #cbd5e1;
-            margin-top: 10px;
-        }
-
-        .checkbox-option {
-            display: flex;
-            align-items: center;
-            margin-bottom: 10px;
-            cursor: pointer;
-            font-size: 13.5px;
-            color: #334155;
-            font-weight: 500;
-        }
-
-        .checkbox-option:last-child {
-            margin-bottom: 0;
-        }
-
-        .checkbox-option input[type="checkbox"] {
-            margin-right: 12px;
-            width: 18px;
-            height: 18px;
-            accent-color: #2563eb; /* Checkbox color azul */
-            cursor: pointer;
-        }
-
-        /* Botón de Acción Azul Oscuro */
-        button {
-            width: 100%;
-            background-color: #1e3a8a; /* Azul Oscuro */
-            color: #ffffff;
-            border: none;
-            padding: 15px;
-            font-size: 16px;
-            font-weight: bold;
-            border-radius: 6px;
-            cursor: pointer;
-            margin-top: 15px;
-            box-shadow: 0 4px 12px rgba(30, 58, 138, 0.2);
-            transition: all 0.2s ease;
-        }
-
-        button:hover {
-            background-color: #1d4ed8; /* Azul más brillante al pasar el cursor */
-        }
-
-        button:active {
-            transform: scale(0.98);
-        }
-
-        /* Caja Dinámica de Métodos */
-        .metodo-seccion {
-            display: none;
-        }
-
-        .active {
-            display: block;
-            animation: fadeIn 0.4s ease-in-out;
-        }
-
-        @keyframes fadeIn {
-            from { opacity: 0; transform: translateY(5px); }
-            to { opacity: 1; transform: translateY(0); }
-        }
-
-        /* Cuadro de Resultados */
-        .resultado-box {
-            margin-top: 30px;
-            padding: 22px;
-            border-radius: 6px;
-            font-size: 16px;
-            display: none;
-            border: 1px solid #cbd5e1;
-            transition: all 0.3s ease;
-            line-height: 1.5;
-        }
-
-        /* Semáforo de riesgo adaptado a la nueva paleta */
-        .resultado-bajo {
-            background-color: #f0fdf4;
-            border-left: 6px solid #16a34a;
-            color: #14532d;
-        }
-
-        .resultado-medio {
-            background-color: #fffbeb;
-            border-left: 6px solid #d97706;
-            color: #78350f;
-        }
-
-        .resultado-alto {
-            background-color: #fef2f2;
-            border-left: 6px solid #dc2626;
-            color: #7f1d1d;
-        }
-
-        /* MARCA DE AGUA INFERIOR DERECHA */
-        .marca-agua {
-            position: fixed;
-            bottom: 15px;
-            right: 20px;
-            font-size: 12px;
-            color: #0f172a;
-            font-weight: bold;
-            letter-spacing: 1px;
-            user-select: none;
-            pointer-events: none;
-            background: rgba(255, 255, 255, 0.9);
-            padding: 8px 14px;
-            border-radius: 4px;
-            border: 1px solid #cbd5e1;
-            box-shadow: 0 2px 8px rgba(15, 23, 42, 0.08);
-            z-index: 1000;
-        }
-    </style>
+    <title>Calculadora Método ROSA (Ergonomía)</title>
+    <!-- Tailwind CSS para un diseño limpio y moderno -->
+    <script src="https://cdn.tailwindcss.com"></script>
 </head>
-<body>
+<body class="bg-gray-50 text-gray-800 font-sans min-h-screen flex flex-col justify-between">
 
-    <header>
-        <h1>Plataforma de Evaluación Ergonómica</h1>
-        <p>Gestión de Riesgos Ocupacionales Avanzada</p>
+    <!-- Encabezado -->
+    <header class="bg-blue-600 text-white py-6 shadow-md">
+        <div class="container mx-auto px-4 text-center">
+            <h1 class="text-3xl font-bold">Calculadora Simplificada Método ROSA</h1>
+            <p class="text-sm mt-2 opacity-90">Evaluación Rápida de Esfuerzo en Oficinas (Rapid Office Strain Assessment)</p>
+        </div>
     </header>
 
-    <div class="container">
-        
-        <div class="form-group">
-            <label for="metodoSeleccionado">Seleccione el Método Científico a aplicar:</label>
-            <select id="metodoSeleccionado" onchange="cambiarMetodo()">
-                <option value="rula">RULA (Carga postural en extremidades superiores)</option>
-                <option value="rosa">ROSA (Puestos de oficina y pantallas PVD)</option>
-            </select>
-        </div>
+    <!-- Contenido Principal -->
+    <main class="container mx-auto px-4 py-8 max-w-4xl">
+        <div class="bg-white rounded-lg shadow-lg p-6 md:p-8">
+            <p class="mb-6 text-gray-600">
+                Selecciona las condiciones que mejor se adapten al puesto de trabajo evaluado. El sistema calculará una aproximación del nivel de riesgo.
+            </p>
 
-        <div id="sec-rula" class="metodo-seccion active">
-            <div class="section-title">Parámetros del Método RULA</div>
-            <div class="form-group">
-                <label>Posición del brazo (Hombros):</label>
-                <select id="rula-brazo">
-                    <option value="1">Postura neutra: Entre 20° de extensión y 20° de flexión (1)</option>
-                    <option value="2">Flexión entre 20° y 45°, o extensión mayor a 20° (2)</option>
-                    <option value="3">Flexión entre 45° y 90° (3)</option>
-                    <option value="4">Flexión extrema mayor a 90° (4)</option>
-                    <option value="5">Brazo rotado, hombro elevado o abducido de manera forzada (+1 adicional) (5)</option>
-                </select>
-            </div>
-            <div class="form-group">
-                <label>Ángulo y postura del cuello:</label>
-                <select id="rula-cuello">
-                    <option value="1">Flexión entre 0° y 10° (1)</option>
-                    <option value="2">Flexión entre 10° y 20° (2)</option>
-                    <option value="3">Flexión mayor a 20° (3)</option>
-                    <option value="4">Extensión / Cuello inclinado hacia atrás (4)</option>
-                    <option value="5">El cuello presenta rotación o inclinación lateral (+1 adicional) (5)</option>
-                </select>
-            </div>
-        </div>
+            <form id="rosaForm" class="space-y-8">
+                
+                <!-- SECCIÓN A: SILLA (Altura, Profundidad, Apoyabrazos, Respaldo) -->
+                <div class="border-b pb-6 border-gray-200">
+                    <h2 class="text-xl font-semibold text-blue-600 mb-4">1. Evaluación de la Silla</h2>
+                    
+                    <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
+                        <!-- Altura de la Silla -->
+                        <div>
+                            <label class="block font-medium mb-2">Altura del asiento:</label>
+                            <select id="sillaAltura" class="w-full border rounded p-2 bg-gray-50">
+                                <option value="1">Adecuada (Ángulo de rodilla ~90°)</option>
+                                <option value="2">Muy baja (Ángulo de rodilla < 90°)</option>
+                                <option value="2">Muy alta (Pies no apoyan firmemente)</option>
+                            </select>
+                        </div>
 
-        <div id="sec-rosa" class="metodo-seccion">
-            <div class="section-title">Parámetros del Método ROSA</div>
-            
-            <div class="form-group">
-                <label>Puntuación de la Altura del Asiento (Postura Base):</label>
-                <select id="rosa-silla-base">
-                    <option value="1">Rodillas flectadas 90º aproximadamente (1 Punto)</option>
-                    <option value="2">Asiento muy bajo. Ángulo de la rodilla &lt; 90º (2 Puntos)</option>
-                    <option value="2_alto">Asiento muy alto. Ángulo de la rodilla &gt; 90º (2 Puntos)</option>
-                    <option value="3">Sin contacto de los pies con el suelo (3 Puntos)</option>
-                </select>
-            </div>
+                        <!-- Profundidad del asiento -->
+                        <div>
+                            <label class="block font-medium mb-2">Profundidad del asiento:</label>
+                            <select id="sillaProfundidad" class="w-full border rounded p-2 bg-gray-50">
+                                <option value="1">Adecuada (Espacio libre entre asiento y corva de la rodilla)</option>
+                                <option value="2">Muy larga (Presión detrás de las rodillas)</option>
+                                <option value="2">Muy corta (No soporta los muslos adecuadamente)</option>
+                            </select>
+                        </div>
 
-            <div class="form-group">
-                <span class="subsection-title">Factores adicionales de la silla (Acumulables):</span>
-                <div class="checkbox-container">
-                    <label class="checkbox-option">
-                        <input type="checkbox" id="rosa-silla-espacio" value="1">
-                        Espacio insuficiente para las piernas bajo la mesa (+1 punto)
-                    </label>
-                    <label class="checkbox-option">
-                        <input type="checkbox" id="rosa-silla-regulable" value="1">
-                        La altura del asiento no es regulable (+1 punto)
-                    </label>
+                        <!-- Apoyabrazos -->
+                        <div>
+                            <label class="block font-medium mb-2">Apoyabrazos:</label>
+                            <select id="apoyabrazos" class="w-full border rounded p-2 bg-gray-50">
+                                <option value="1">Adecuados (Codos apoyados, hombros relajados)</option>
+                                <option value="2">Muy altos (Hombros encogidos) o Muy bajos / separados</option>
+                                <option value="2">Sin apoyabrazos o superficie dura/dañada</option>
+                            </select>
+                        </div>
+
+                        <!-- Respaldo -->
+                        <div>
+                            <label class="block font-medium mb-2">Respaldo (Soporte Lumbar):</label>
+                            <select id="respaldo" class="w-full border rounded p-2 bg-gray-50">
+                                <option value="1">Adecuado (Ángulo de 95° a 110° con soporte lumbar)</option>
+                                <option value="2">Sin soporte lumbar o reclinación inadecuada</option>
+                                <option value="2">Superficie de trabajo no ajustable / Sin respaldo funcional</option>
+                            </select>
+                        </div>
+                    </div>
                 </div>
-            </div>
 
-            <div class="form-group">
-                <label>Ubicación de la Pantalla de Visualización (PVD):</label>
-                <select id="rosa-pantalla">
-                    <option value="1">Borde superior a la altura de los ojos y distancia adecuada (40-70 cm) (1)</option>
-                    <option value="2">Pantalla muy baja, requiere flexión persistente de cuello (2)</option>
-                    <option value="3">Pantalla muy alta, genera extensión cervical u obliga a girar el cuello (3)</option>
-                    <option value="4">Presencia de reflejos molestos o pantalla no regulable (+1 adicional) (4)</option>
-                </select>
+                <!-- SECCIÓN B: PANTALLA Y TELÉFONO -->
+                <div class="border-b pb-6 border-gray-200">
+                    <h2 class="text-xl font-semibold text-blue-600 mb-4">2. Pantalla y Teléfono</h2>
+                    
+                    <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
+                        <!-- Pantalla -->
+                        <div>
+                            <label class="block font-medium mb-2">Ubicación de la Pantalla:</label>
+                            <select id="pantalla" class="w-full border rounded p-2 bg-gray-50">
+                                <option value="1">Adecuada (A la altura de los ojos y de frente)</option>
+                                <option value="2">Muy baja (Flexión de cuello) o Muy alta (Extensión de cuello)</option>
+                                <option value="2">Desviada lateralmente (Rotación de cuello)</option>
+                            </select>
+                        </div>
+
+                        <!-- Teléfono -->
+                        <div>
+                            <label class="block font-medium mb-2">Uso del Teléfono:</label>
+                            <select id="telefono" class="w-full border rounded p-2 bg-gray-50">
+                                <option value="1">Manos libres / Auriculares (o uso muy bajo)</option>
+                                <option value="2">Sujeto con la mano (Distancia adecuada)</option>
+                                <option value="3">Sujeto entre el cuello y el hombro</option>
+                            </select>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- SECCIÓN C: TECLADO Y MOUSE -->
+                <div>
+                    <h2 class="text-xl font-semibold text-blue-600 mb-4">3. Teclado y Mouse</h2>
+                    
+                    <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
+                        <!-- Teclado -->
+                        <div>
+                            <label class="block font-medium mb-2">Ubicación del Teclado:</label>
+                            <select id="teclado" class="w-full border rounded p-2 bg-gray-50">
+                                <option value="1">Adecuado (Brazos relajados, antebrazos paralelos al suelo)</option>
+                                <option value="2">Muy alto (Hombros tensos) o Muy bajo</option>
+                                <option value="2">Desviación de muñecas al escribir</option>
+                            </select>
+                        </div>
+
+                        <!-- Mouse -->
+                        <div>
+                            <label class="block font-medium mb-2">Uso del Mouse:</label>
+                            <select id="mouse" class="w-full border rounded p-2 bg-gray-50">
+                                <option value="1">Alineado con el hombro y cerca del teclado</option>
+                                <option value="2">Lejos del cuerpo (Extensión de brazo)</option>
+                                <option value="2">Diferente nivel respecto al teclado</option>
+                            </select>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- BOTÓN CALCULAR -->
+                <div class="text-center pt-4">
+                    <button type="button" onclick="calcularROSA()" class="bg-blue-600 text-white font-bold py-3 px-8 rounded-lg shadow hover:bg-blue-700 transition duration-200 w-full sm:w-auto">
+                        Calcular Puntuación ROSA
+                    </button>
+                </div>
+            </form>
+
+            <!-- RESULTADOS -->
+            <div id="resultadoSeccion" class="hidden mt-8 p-6 rounded-lg border-2 text-center transition-all duration-300">
+                <h3 class="text-2xl font-bold mb-2">Puntuación Final ROSA: <span id="scoreText">0</span></h3>
+                <p id="nivelRiesgo" class="font-semibold text-lg mb-4"></p>
+                <p id="recomendacion" class="text-sm text-gray-600 max-w-lg mx-auto"></p>
             </div>
         </div>
+    </main>
 
-        <button onclick="procesarEvaluacion()">Calcular Diagnóstico Ergonómico</button>
+    <!-- Pie de página -->
+    <footer class="bg-gray-800 text-white text-center py-4 text-xs mt-12">
+        <p>&copy; 2026 - Basado en la guía del método ROSA (UPV)</p>
+    </footer>
 
-        <div id="resultado" class="resultado-box"></div>
-
-    </div>
-
-    <div class="marca-agua">creado por Frias y Prado</div>
-
+    <!-- Lógica de Cálculo en JS -->
     <script>
-        function cambiarMetodo() {
-            let seleccion = document.getElementById('metodoSeleccionado').value;
-            let secciones = document.getElementsByClassName('metodo-seccion');
-            for(let i=0; i < secciones.length; i++) {
-                secciones[i].classList.remove('active');
-            }
+        function calcularROSA() {
+            // Obtener valores de los formularios
+            const sillaAlt = parseInt(document.getElementById('sillaAltura').value);
+            const sillaProf = parseInt(document.getElementById('sillaProfundidad').value);
+            const apoyabrazos = parseInt(document.getElementById('apoyabrazos').value);
+            const respaldo = parseInt(document.getElementById('respaldo').value);
             
-            if(seleccion === 'rula') document.getElementById('sec-rula').classList.add('active');
-            if(seleccion === 'rosa') document.getElementById('sec-rosa').classList.add('active');
+            const pantalla = parseInt(document.getElementById('pantalla').value);
+            const telefono = parseInt(document.getElementById('telefono').value);
+            
+            const teclado = parseInt(document.getElementById('teclado').value);
+            const mouse = parseInt(document.getElementById('mouse').value);
 
-            let contenedorResultado = document.getElementById('resultado');
-            contenedorResultado.style.display = "none";
-            contenedorResultado.className = "resultado-box";
-        }
+            // Algoritmo de aproximación ROSA (Estructura de puntuación simplificada)
+            // 1. Puntuación de la Silla (Media/Máximo de sus componentes)
+            const scoreSilla = Math.max(sillaAlt, sillaProf) + Math.max(apoyabrazos, respaldo);
+            
+            // 2. Puntuación de Pantalla y Teléfono
+            const scorePantallaTelefono = Math.max(pantalla, telefono);
 
-        function procesarEvaluacion() {
-            let metodo = document.getElementById('metodoSeleccionado').value;
-            let puntajeFinal = 0;
-            let diagnostico = "";
-            let nivelRiesgo = ""; // 'bajo', 'medio', 'alto'
+            // 3. Puntuación de Teclado y Mouse
+            const scoreTecladoMouse = Math.max(teclado, mouse);
 
-            if (metodo === 'rula') {
-                let brazo = parseInt(document.getElementById('rula-brazo').value);
-                let cuello = parseInt(document.getElementById('rula-cuello').value);
-                puntajeFinal = brazo + cuello;
+            // 4. Puntuación Final ROSA (Escala del 1 al 10 en base a cruces)
+            let scoreFinal = Math.round((scoreSilla + scorePantallaTelefono + scoreTecladoMouse) / 1.5);
+            
+            // Forzar límites normales del método (1 a 10)
+            if (scoreFinal > 10) scoreFinal = 10;
+            if (scoreFinal < 1) scoreFinal = 1;
 
-                if (puntajeFinal <= 3) {
-                    diagnostico = "<strong>Nivel de Acción 1:</strong> Postura aceptable si no se mantiene o repite durante largos períodos.";
-                    nivelRiesgo = "bajo";
-                } else if (puntajeFinal <= 5) {
-                    diagnostico = "<strong>Nivel de Acción 2:</strong> Riesgo medio. Se requiere investigación adicional y pueden ser necesarios cambios.";
-                    nivelRiesgo = "medio";
-                } else if (puntajeFinal <= 6) {
-                    diagnostico = "<strong>Nivel de Acción 3:</strong> Riesgo alto. Se requiere el estudio y modificaciones pronto.";
-                    nivelRiesgo = "alto";
-                } else {
-                    diagnostico = "<strong>Nivel de Acción 4:</strong> Riesgo extremo. Se requieren cambios urgentes de forma inmediata de la tarea.";
-                    nivelRiesgo = "alto";
-                }
+            // Mostrar el contenedor de resultados
+            const resultBox = document.getElementById('resultadoSeccion');
+            const scoreText = document.getElementById('scoreText');
+            const nivelRiesgo = document.getElementById('nivelRiesgo');
+            const recomendacion = document.getElementById('recomendacion');
 
-            } else if (metodo === 'rosa') {
-                // Cálculo de la Silla de forma avanzada
-                let sillaBaseRaw = document.getElementById('rosa-silla-base').value;
-                let sillaBase = (sillaBaseRaw === "2_alto") ? 2 : parseInt(sillaBaseRaw);
-                
-                let adicionales = 0;
-                if (document.getElementById('rosa-silla-espacio').checked) {
-                    adicionales += 1;
-                }
-                if (document.getElementById('rosa-silla-regulable').checked) {
-                    adicionales += 1;
-                }
-                
-                // Sumatoria total de la silla (Puntuación Base + Acumulados)
-                let totalSilla = sillaBase + adicionales;
-                
-                let pantalla = parseInt(document.getElementById('rosa-pantalla').value);
-                
-                // ROSA calcula el riesgo ponderando la peor postura encontrada más un factor base
-                puntajeFinal = Math.max(totalSilla, pantalla) + 1;
+            resultBox.classList.remove('hidden');
+            scoreText.textContent = scoreFinal;
 
-                if (puntajeFinal <= 3) {
-                    diagnostico = "<strong>Riesgo Aceptable:</strong> El puesto de oficina se encuentra adaptado ergonómicamente.";
-                    nivelRiesgo = "bajo";
-                } else if (puntajeFinal <= 5) {
-                    diagnostico = "<strong>Riesgo Moderado:</strong> Se aconseja regular componentes del mobiliario.";
-                    nivelRiesgo = "medio";
-                } else {
-                    diagnostico = "<strong>Riesgo Alto:</strong> El puesto supera los valores límites. Es obligatorio intervenir las dimensiones ergonómicas.";
-                    nivelRiesgo = "alto";
-                }
+            // Determinar nivel de riesgo y estilos dinámicos
+            if (scoreFinal <= 3) {
+                // Riesgo Bajo
+                resultBox.className = "mt-8 p-6 rounded-lg border-2 text-center bg-green-50 border-green-500 text-green-900";
+                nivelRiesgo.textContent = "Nivel de Riesgo: BAJO (Puntuación ≤ 3)";
+                recomendacion.textContent = "El puesto de trabajo es aceptable y presenta un diseño ergonómico adecuado. Sigue manteniendo buenos hábitos posturales.";
+            } else if (scoreFinal >= 4 && scoreFinal <= 5) {
+                // Riesgo Medio
+                resultBox.className = "mt-8 p-6 rounded-lg border-2 text-center bg-yellow-50 border-yellow-500 text-yellow-900";
+                nivelRiesgo.textContent = "Nivel de Riesgo: MEDIO (Puntuación 4 - 5)";
+                recomendacion.textContent = "Se aconseja realizar mejoras sobre los elementos que han obtenido puntuaciones altas para evitar la fatiga y molestias a largo plazo.";
+            } else {
+                // Riesgo Alto
+                resultBox.className = "mt-8 p-6 rounded-lg border-2 text-center bg-red-50 border-red-500 text-red-900";
+                nivelRiesgo.textContent = "Nivel de Riesgo: MUY ALTO (Puntuación ≥ 6)";
+                recomendacion.textContent = "Es necesaria una intervención ergonómica inmediata en el puesto de trabajo. Modifica la altura de la silla, la posición de la pantalla o la distribución de tus herramientas.";
             }
 
-            let contenedorResultado = document.getElementById('resultado');
-            contenedorResultado.style.display = "block";
-            
-            contenedorResultado.className = "resultado-box";
-            if(nivelRiesgo === "bajo") contenedorResultado.classList.add("resultado-bajo");
-            if(nivelRiesgo === "medio") contenedorResultado.classList.add("resultado-medio");
-            if(nivelRiesgo === "alto") contenedorResultado.classList.add("resultado-alto");
-
-            contenedorResultado.innerHTML = `
-                <strong>Método Aplicado:</strong> ${metodo.toUpperCase()}<br>
-                <strong>Puntuación Indicativa Calculada:</strong> ${puntajeFinal} puntos<br><br>
-                ${diagnostico}
-            `;
-
-            contenedorResultado.scrollIntoView({ behavior: 'smooth', block: 'nearest' });
+            // Scroll suave hacia el resultado
+            resultBox.scrollIntoView({ behavior: 'smooth' });
         }
     </script>
 </body>
