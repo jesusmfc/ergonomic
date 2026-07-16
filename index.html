@@ -232,49 +232,15 @@
                 </div>
             </div>
 
-            <div class="bg-slate-100 p-5 rounded-xl border border-slate-200">
-                <h2 class="text-lg font-bold text-blue-800 mb-4">Cálculos Parciales Intermedios</h2>
-                <div class="grid grid-cols-2 md:grid-cols-5 gap-4 text-center">
-                    <div class="bg-white p-3 rounded-lg border border-slate-200 shadow-sm">
-                        <p class="text-xs text-slate-500 font-semibold uppercase">Alt + Prof</p>
-                        <p id="resAltProf" class="text-xl font-bold text-slate-800 mt-1">0</p>
-                    </div>
-                    <div class="bg-white p-3 rounded-lg border border-slate-200 shadow-sm">
-                        <p class="text-xs text-slate-500 font-semibold uppercase">Brazos + Resp</p>
-                        <p id="resBrazResp" class="text-xl font-bold text-slate-800 mt-1">0</p>
-                    </div>
-                    <div class="bg-white p-3 rounded-lg border border-slate-200 shadow-sm">
-                        <p class="text-xs text-slate-500 font-semibold uppercase">Silla Parcial</p>
-                        <p id="resSillaParcial" class="text-xl font-bold text-slate-800 mt-1">0</p>
-                    </div>
-                    <div class="bg-white p-3 rounded-lg border border-slate-200 shadow-sm">
-                        <p class="text-xs text-slate-500 font-semibold uppercase">Silla Total</p>
-                        <p id="resSillaTotal" class="text-xl font-bold text-blue-700 mt-1">0</p>
-                    </div>
-                    <div class="bg-white p-3 rounded-lg border border-slate-200 shadow-sm col-span-2 md:col-span-1">
-                        <p class="text-xs text-slate-500 font-semibold uppercase">Pantalla/Tel (B)</p>
-                        <p id="resPantallaTel" class="text-xl font-bold text-slate-800 mt-1">0</p>
-                    </div>
-                    <div class="bg-white p-3 rounded-lg border border-slate-200 shadow-sm">
-                        <p class="text-xs text-slate-500 font-semibold uppercase">Teclado/Mouse (C)</p>
-                        <p id="resTecladoMouse" class="text-xl font-bold text-slate-800 mt-1">0</p>
-                    </div>
-                    <div class="bg-white p-3 rounded-lg border border-slate-200 shadow-sm">
-                        <p class="text-xs text-slate-500 font-semibold uppercase">Periféricos (D)</p>
-                        <p id="resPerifericos" class="text-xl font-bold text-slate-800 mt-1">0</p>
-                    </div>
-                </div>
-            </div>
-
             <div id="scoreBox" class="mt-6 p-6 rounded-xl text-center border-2 transition-all bg-blue-50 border-blue-300 text-blue-900">
-                <p class="text-sm uppercase font-bold tracking-wider text-blue-800 mb-1">Resultado Final</p>
+                <p class="text-sm uppercase font-bold tracking-wider text-blue-800 mb-1">Resultado Final de Evaluación</p>
                 <div class="flex items-center justify-center space-x-2">
-                    <span class="text-sm font-semibold">Puntuación ROSA:</span>
-                    <span id="resRosaFinal" class="text-3xl font-black">0</span>
+                    <span class="text-sm font-semibold text-slate-700">Puntuación ROSA Final:</span>
+                    <span id="resRosaFinal" class="text-3xl font-black text-blue-800">0</span>
                 </div>
                 <div class="mt-3">
-                    <p class="text-base font-semibold">Nivel de Riesgo: <span id="resRiesgo" class="font-bold underline">Calculando...</span></p>
-                    <p id="resActuacion" class="text-sm mt-1 text-blue-700 font-medium">Por favor, modifique los selectores para calcular el estado.</p>
+                    <p class="text-base font-semibold text-slate-800">Nivel de Riesgo: <span id="resRiesgo" class="font-bold underline text-blue-800">Calculando...</span></p>
+                    <p id="resActuacion" class="text-sm mt-1 text-slate-600 font-medium">Modifique los parámetros para ver el nivel de actuación.</p>
                 </div>
             </div>
 
@@ -356,7 +322,7 @@
 
         function calcularTodo() {
             try {
-                // 1. Cálculos de Altura y Profundidad
+                // 1. Silla - Altura y Profundidad
                 let altura = parseInt(document.getElementById('alturaAsiento').value) || 0;
                 if (document.getElementById('alturaNoRegulable').checked) altura += 1;
                 if (document.getElementById('espacioInsuficiente').checked) altura += 1;
@@ -365,9 +331,8 @@
                 if (document.getElementById('profundidadNoRegulable').checked) profundidad += 1;
 
                 let altProfTotal = altura + profundidad;
-                document.getElementById('resAltProf').innerText = altProfTotal;
 
-                // 2. Cálculos de Reposabrazos y Respaldo
+                // 2. Silla - Reposabrazos y Respaldo
                 let brazos = parseInt(document.getElementById('reposabrazos').value) || 0;
                 if (document.getElementById('brazosSeparados').checked) brazos += 1;
                 if (document.getElementById('superficieDura').checked) brazos += 1;
@@ -378,18 +343,14 @@
                 if (document.getElementById('respaldoNoAjustable').checked) resp += 1;
 
                 let brazosRespTotal = brazos + resp;
-                document.getElementById('resBrazResp').innerText = brazosRespTotal;
 
-                // --- TABLA A (Silla Parcial) ---
+                // Cruce Tabla A
                 let fA = Math.max(2, Math.min(8, altProfTotal));
                 let cA = Math.max(2, Math.min(9, brazosRespTotal));
                 let puntuacionSillaParcial = tablaA[fA] ? (tablaA[fA][cA] || 1) : 1;
-                document.getElementById('resSillaParcial').innerText = puntuacionSillaParcial;
 
-                // Suma del tiempo Silla
                 let tSilla = parseInt(document.getElementById('tiempoSilla').value) || 0;
                 let puntuacionSillaFinal = Math.max(1, Math.min(10, puntuacionSillaParcial + tSilla));
-                document.getElementById('resSillaTotal').innerText = puntuacionSillaFinal;
 
                 // 3. Pantalla y Teléfono (Tabla B)
                 let pant = parseInt(document.getElementById('pantalla').value) || 0;
@@ -402,14 +363,12 @@
                 if (document.getElementById('sujetaHombro').checked) tel += 2;
                 if (document.getElementById('noManosLibres').checked) tel += 1;
 
-                // --- TABLA B ---
                 let fB = Math.max(0, Math.min(6, tel)); 
                 let cB = Math.max(0, Math.min(7, pant));
                 let puntuacionBParcial = tablaB[fB] ? (tablaB[fB][cB] || 1) : 1;
 
                 let tPant = parseInt(document.getElementById('tiempoPantalla').value) || 0;
                 let puntuacionBFinal = Math.max(1, Math.min(9, puntuacionBParcial + tPant));
-                document.getElementById('resPantallaTel').innerText = puntuacionBFinal;
 
                 // 4. Teclado y Mouse (Tabla C)
                 let msc = parseInt(document.getElementById('mouse').value) || 0;
@@ -423,72 +382,69 @@
                 if (document.getElementById('alcanzarLejos').checked) tec += 1;
                 if (document.getElementById('tecladoNoAjustable').checked) tec += 1;
 
-                // --- TABLA C ---
                 let fC = Math.max(0, Math.min(7, msc));
                 let cC = Math.max(0, Math.min(7, tec));
                 let puntuacionCParcial = tablaC[fC] ? (tablaC[fC][cC] || 1) : 1;
 
                 let tPerif = parseInt(document.getElementById('tiempoPerifericos').value) || 0;
                 let puntuacionCFinal = Math.max(1, Math.min(9, puntuacionCParcial + tPerif));
-                document.getElementById('resTecladoMouse').innerText = puntuacionCFinal;
 
                 // 5. Periféricos Finales (Tabla D)
                 let fD = Math.max(1, Math.min(9, puntuacionBFinal));
                 let cD = Math.max(1, Math.min(9, puntuacionCFinal));
                 let puntuacionDFinal = tablaD[fD] ? (tablaD[fD][cD] || 1) : 1;
-                document.getElementById('resPerifericos').innerText = puntuacionDFinal;
 
                 // 6. Puntuación Final ROSA (Tabla E)
                 let fE = Math.max(1, Math.min(10, puntuacionSillaFinal));
                 let cE = Math.max(1, Math.min(10, puntuacionDFinal));
                 let rosaFinal = tablaE[fE] ? (tablaE[fE][cE] || 1) : 1;
 
+                // Asignar al HTML de resultados
                 document.getElementById('resRosaFinal').innerText = rosaFinal;
 
                 // Determinar Nivel de Riesgo y Actuación
                 let riesgo = "Inapreciable";
                 let actuacion = "No es necesaria actuación.";
-                let styleClasses = "bg-blue-50 border-blue-300 text-blue-900"; // Diseño azul original por defecto
+                let alertClass = "bg-blue-50 border-blue-300 text-blue-900"; // Azul original
 
                 if (rosaFinal === 1) {
                     riesgo = "Inapreciable";
                     actuacion = "No es necesaria actuación.";
-                    styleClasses = "bg-green-50 border-green-300 text-green-900";
+                    alertClass = "bg-green-50 border-green-300 text-green-900";
                 } else if (rosaFinal >= 2 && rosaFinal <= 4) {
                     riesgo = "Mejorable";
                     actuacion = "Pueden mejorarse algunos elementos del puesto.";
-                    styleClasses = "bg-amber-50 border-amber-300 text-amber-900";
+                    alertClass = "bg-amber-50 border-amber-300 text-amber-900";
                 } else if (rosaFinal === 5) {
                     riesgo = "Alto";
                     actuacion = "Es necesaria la actuación.";
-                    styleClasses = "bg-orange-50 border-orange-300 text-orange-900";
+                    alertClass = "bg-orange-50 border-orange-300 text-orange-900";
                 } else if (rosaFinal >= 6 && rosaFinal <= 8) {
                     riesgo = "Muy Alto";
                     actuacion = "Es necesaria la actuación cuanto antes.";
-                    styleClasses = "bg-red-50 border-red-300 text-red-900";
+                    alertClass = "bg-red-50 border-red-300 text-red-900";
                 } else if (rosaFinal >= 9 && rosaFinal <= 10) {
                     riesgo = "Extremo";
                     actuacion = "Es necesaria la actuación urgentemente.";
-                    styleClasses = "bg-red-100 border-red-400 text-red-950";
+                    alertClass = "bg-red-100 border-red-400 text-red-950";
                 }
 
-                // Aplicar de forma limpia los valores en el HTML
                 document.getElementById('resRiesgo').innerText = riesgo;
                 document.getElementById('resActuacion').innerText = actuacion;
                 
                 const scoreBox = document.getElementById('scoreBox');
                 if (scoreBox) {
-                    scoreBox.className = `mt-6 p-6 rounded-xl text-center border-2 transition-all ${styleClasses}`;
+                    scoreBox.className = `mt-6 p-6 rounded-xl text-center border-2 transition-all ${alertClass}`;
                 }
             } catch (error) {
-                console.error("Error en el cálculo del método ROSA:", error);
+                console.error("Error al calcular:", error);
             }
         }
 
-        // Ejecutar primer cálculo automático al iniciar la página
+        // Ejecutar primer cálculo automático al iniciar
         window.onload = calcularTodo;
 
-        // Registrar eventos en todos los inputs para recalcular automáticamente al cambiar cualquier opción
+        // Registrar eventos automáticos de recalculo
         const inputs = document.querySelectorAll('select, input[type="checkbox"]');
         inputs.forEach(input => {
             input.addEventListener('change', calcularTodo);
