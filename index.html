@@ -1,558 +1,251 @@
-<!DOCTYPE html>
-<html lang="es">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Calculadora Ergonómica - Método ROSA</title>
-    <script src="https://cdn.tailwindcss.com"></script>
-    <script>
-        tailwind.config = {
-            darkMode: 'class',
-            theme: {
-                extend: {
-                    colors: {
-                        darkBg: '#0d1117',
-                        cardBg: '#161b22',
-                        borderColor: '#30363d',
-                        accentBlue: '#58a6ff',
-                        accentGreen: '#2ea44f'
-                    }
-                }
-            }
-        }
-    </script>
-</head>
-<body class="bg-[#0d1117] text-[#c9d1d9] font-sans min-h-screen flex flex-col justify-between">
-
-    <header class="border-b border-[#30363d] bg-[#161b22] py-4 px-6">
-        <div class="max-w-6xl mx-auto flex justify-between items-center">
-            <h1 class="text-xl font-semibold text-white flex items-center gap-2">
-                <svg class="w-6 h-6 text-[#58a6ff]" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5H7a2 2 0 00-2 2v12a2 2 0 002 2h10a2 2 0 002-2V7a2 2 0 00-2-2h-2M9 5a2 2 0 002 2h2a2 2 0 002-2M9 5a2 2 0 012-2h2a2 2 0 012 2m-3 7h3m-3 4h3m-6-4h.01M9 16h.01"></path>
-                </svg>
-                Evaluación Ergonómica: Método ROSA
-            </h1>
-            <span class="text-xs text-[#8b949e] px-2 py-1 rounded bg-[#30363d] font-mono">Frías & Prado</span>
+   <header class="bg-blue-800 text-white py-6 shadow-md border-b-4 border-blue-900">
+        <div class="container mx-auto px-4 text-center">
+            <h1 class="text-3xl font-extrabold tracking-tight">EVALUACIÓN DEL MÉTODO ROSA</h1>
+            <p class="text-sm mt-2 font-medium opacity-90">Rapid Office Strain Assessment — Implementación Rigurosa con Tiempos de Uso Individuales</p>
+            <p class="text-sm mt-2 font-medium opacity-90">Rapid Office Strain Assessment — Algoritmo y Matrices de Cálculo Corregidas</p>
         </div>
     </header>
 
-    <main class="max-w-6xl w-full mx-auto p-6 flex-grow grid grid-cols-1 lg:grid-cols-3 gap-6">
-        
-        <div class="lg:col-span-2 space-y-6">
-            
-            <div class="bg-[#161b22] border border-[#30363d] rounded-lg p-5">
-                <h2 class="text-lg font-medium text-white mb-4 flex items-center gap-2 border-b border-[#30363d] pb-2">
-                    <span class="bg-[#30363d] text-xs px-2 py-0.5 rounded text-[#58a6ff]">1</span>
-                    Evaluación de la Silla
-                </h2>
-                
-                <div class="grid grid-cols-1 md:grid-cols-2 gap-4">
-                    <div>
-                        <label class="block text-sm font-medium text-[#8b949e] mb-1">Altura del Asiento</label>
-                        <select id="alturaAsiento" class="w-full bg-[#0d1117] border border-[#30363d] rounded p-2 text-sm focus:border-[#58a6ff] focus:outline-none">
-                            <option value="1">Rodillas flectadas ~90º (1 pt)</option>
-                            <option value="2">Muy bajo / Ángulo < 90º (2 pts)</option>
-                            <option value="2">Muy alto / Ángulo > 90º (2 pts)</option>
-                            <option value="3">Sin contacto de los pies con el suelo (3 pts)</option>
-                        </select>
-                        <div class="mt-2 space-y-1">
-                            <label class="inline-flex items-center text-xs text-[#8b949e]">
-                                <input type="checkbox" id="alturaNoRegulable" class="mr-1.5 rounded border-[#30363d] bg-[#0d1117]">
-                                Altura no regulable (+1)
-                            </label>
-                            <br>
-                            <label class="inline-flex items-center text-xs text-[#8b949e]">
-                                <input type="checkbox" id="espacioInsuficiente" class="mr-1.5 rounded border-[#30363d] bg-[#0d1117]">
-                                Espacio insuficiente bajo mesa (+1)
-                            </label>
-                        </div>
-                    </div>
+    <main class="container mx-auto px-4 py-8 max-w-5xl">
+        <div class="bg-white rounded-xl shadow-xl p-6 md:p-8">
+            <p class="mb-6 text-sm text-slate-600 border-b pb-4 leading-relaxed">
+                Complete de forma rigurosa cada uno de los criterios. El sistema calcula la puntuación final aplicando los modificadores de tiempo de forma individualizada para cada dispositivo y cruzando los resultados a través de las matrices correspondientes.
+                Complete cada uno de los criterios. El sistema calcula la puntuación final aplicando los modificadores de tiempo de forma individualizada para cada dispositivo y cruzando los resultados a través de las matrices correspondientes.
+            </p>
 
-                    <div>
-                        <label class="block text-sm font-medium text-[#8b949e] mb-1">Profundidad del Asiento</label>
-                        <select id="profundidadAsiento" class="w-full bg-[#0d1117] border border-[#30363d] rounded p-2 text-sm focus:border-[#58a6ff] focus:outline-none">
-                            <option value="1">~8 cm de espacio tras la rodilla (1 pt)</option>
-                            <option value="2">Muy largo / < 8 cm de espacio (2 pts)</option>
-                            <option value="2">Muy corto / > 8 cm de espacio (2 pts)</option>
-                        </select>
-                        <div class="mt-2">
-                            <label class="inline-flex items-center text-xs text-[#8b949e]">
-                                <input type="checkbox" id="profundidadNoRegulable" class="mr-1.5 rounded border-[#30363d] bg-[#0d1117]">
-                                Profundidad no regulable (+1)
-                            </label>
-                        </div>
-                    </div>
-
-                    <div>
-                        <label class="block text-sm font-medium text-[#8b949e] mb-1">Reposabrazos</label>
-                        <select id="reposabrazos" class="w-full bg-[#0d1117] border border-[#30363d] rounded p-2 text-sm focus:border-[#58a6ff] focus:outline-none">
-                            <option value="1">Codos bien apoyados / Hombros relajados (1 pt)</option>
-                            <option value="2">Demasiado altos / Hombros encogidos (2 pts)</option>
-                            <option value="2">Demasiado bajos / Codos no apoyan (2 pts)</option>
-                        </select>
-                        <div class="mt-2 space-y-1">
-                            <label class="inline-flex items-center text-xs text-[#8b949e]">
-                                <input type="checkbox" id="brazosSeparados" class="mr-1.5 rounded border-[#30363d] bg-[#0d1117]">
-                                Reposabrazos muy separados (+1)
-                            </label>
-                            <br>
-                            <label class="inline-flex items-center text-xs text-[#8b949e]">
-                                <input type="checkbox" id="superficieDura" class="mr-1.5 rounded border-[#30363d] bg-[#0d1117]">
-                                Superficie dura o dañada (+1)
-                            </label>
-                            <br>
-                            <label class="inline-flex items-center text-xs text-[#8b949e]">
-                                <input type="checkbox" id="brazosNoAjustables" class="mr-1.5 rounded border-[#30363d] bg-[#0d1117]">
-                                Reposabrazos no ajustables (+1)
-                            </label>
-                        </div>
-                    </div>
-
-                    <div>
-                        <label class="block text-sm font-medium text-[#8b949e] mb-1">Respaldo</label>
-                        <select id="respaldo" class="w-full bg-[#0d1117] border border-[#30363d] rounded p-2 text-sm focus:border-[#58a6ff] focus:outline-none">
-                            <option value="1">Reclinado 95-110º / Apoyo adecuado (1 pt)</option>
-                            <option value="2">Sin apoyo lumbar o mal situado (2 pts)</option>
-                            <option value="2">Reclinado < 95º o > 110º (2 pts)</option>
-                            <option value="2">Sin respaldo o no se utiliza (2 pts)</option>
-                        </select>
-                        <div class="mt-2 space-y-1">
-                            <label class="inline-flex items-center text-xs text-[#8b949e]">
-                                <input type="checkbox" id="mesaMuyAlta" class="mr-1.5 rounded border-[#30363d] bg-[#0d1117]">
-                                Mesa de trabajo demasiado alta (+1)
-                            </label>
-                            <br>
-                            <label class="inline-flex items-center text-xs text-[#8b949e]">
-                                <input type="checkbox" id="respaldoNoAjustable" class="mr-1.5 rounded border-[#30363d] bg-[#0d1117]">
-                                Respaldo no ajustable (+1)
-                            </label>
-                        </div>
-                    </div>
-                </div>
-            </div>
-
-            <div class="bg-[#161b22] border border-[#30363d] rounded-lg p-5">
-                <h2 class="text-lg font-medium text-white mb-4 flex items-center gap-2 border-b border-[#30363d] pb-2">
-                    <span class="bg-[#30363d] text-xs px-2 py-0.5 rounded text-[#58a6ff]">2</span>
-                    Pantalla y Teléfono
-                </h2>
-                
-                <div class="grid grid-cols-1 md:grid-cols-2 gap-4">
-                    <div>
-                        <label class="block text-sm font-medium text-[#8b949e] mb-1">Pantalla</label>
-                        <select id="pantalla" class="w-full bg-[#0d1117] border border-[#30363d] rounded p-2 text-sm focus:border-[#58a6ff] focus:outline-none">
-                            <option value="1">Distancia 45-75 cm y borde a altura ojos (1 pt)</option>
-                            <option value="2">Muy baja (30º bajo ojos) (2 pts)</option>
-                            <option value="3">Muy alta (extensión cuello) (3 pts)</option>
-                        </select>
-                        <div class="mt-2 space-y-1">
-                            <label class="inline-flex items-center text-xs text-[#8b949e]">
-                                <input type="checkbox" id="pantallaDesviada" class="mr-1.5 rounded border-[#30363d] bg-[#0d1117]">
-                                Desviada lateralmente / Giro cuello (+1)
-                            </label>
-                            <br>
-                            <label class="inline-flex items-center text-xs text-[#8b949e]">
-                                <input type="checkbox" id="noAtril" class="mr-1.5 rounded border-[#30363d] bg-[#0d1117]">
-                                Sin atril para documentos necesarios (+1)
-                            </label>
-                            <br>
-                            <label class="inline-flex items-center text-xs text-[#8b949e]">
-                                <input type="checkbox" id="brillosPantalla" class="mr-1.5 rounded border-[#30363d] bg-[#0d1117]">
-                                Brillos o reflejos en pantalla (+1)
-                            </label>
-                            <br>
-                            <label class="inline-flex items-center text-xs text-[#8b949e]">
-                                <input type="checkbox" id="pantallaLejos" class="mr-1.5 rounded border-[#30363d] bg-[#0d1117]">
-                                Pantalla muy lejos (> 75 cm) (+1)
-                            </label>
-                        </div>
-                    </div>
-
-                    <div>
-                        <label class="block text-sm font-medium text-[#8b949e] mb-1">Teléfono</label>
-                        <select id="telefono" class="w-full bg-[#0d1117] border border-[#30363d] rounded p-2 text-sm focus:border-[#58a6ff] focus:outline-none">
-                            <option value="1">Manos libres/Neutral o cerca (<30cm) (1 pt)</option>
-                            <option value="2">Lejos (> 30 cm) (2 pts)</option>
-                        </select>
-                        <div class="mt-2 space-y-1">
-                            <label class="inline-flex items-center text-xs text-[#8b949e]">
-                                <input type="checkbox" id="sujetaHombro" class="mr-1.5 rounded border-[#30363d] bg-[#0d1117]">
-                                Sujeta entre cuello y hombro (+2)
-                            </label>
-                            <br>
-                            <label class="inline-flex items-center text-xs text-[#8b949e]">
-                                <input type="checkbox" id="noManosLibres" class="mr-1.5 rounded border-[#30363d] bg-[#0d1117]">
-                                Sin función manos libres (+1)
-                            </label>
-                        </div>
-                    </div>
-                </div>
-            </div>
-
-            <div class="bg-[#161b22] border border-[#30363d] rounded-lg p-5">
-                <h2 class="text-lg font-medium text-white mb-4 flex items-center gap-2 border-b border-[#30363d] pb-2">
-                    <span class="bg-[#30363d] text-xs px-2 py-0.5 rounded text-[#58a6ff]">3</span>
-                    Periféricos (Mouse y Teclado)
-                </h2>
-                
-                <div class="grid grid-cols-1 md:grid-cols-2 gap-4">
-                    <div>
-                        <label class="block text-sm font-medium text-[#8b949e] mb-1">Mouse</label>
-                        <select id="mouse" class="w-full bg-[#0d1117] border border-[#30363d] rounded p-2 text-sm focus:border-[#58a6ff] focus:outline-none">
-                            <option value="1">Alineado con el hombro (1 pt)</option>
-                            <option value="2">No alineado o lejos del cuerpo (2 pts)</option>
-                        </select>
-                        <div class="mt-2 space-y-1">
-                            <label class="inline-flex items-center text-xs text-[#8b949e]">
-                                <input type="checkbox" id="mousePinza" class="mr-1.5 rounded border-[#30363d] bg-[#0d1117]">
-                                Mouse muy pequeño / Agarre en pinza (+1)
-                            </label>
-                            <br>
-                            <label class="inline-flex items-center text-xs text-[#8b949e]">
-                                <input type="checkbox" id="alturaDiferente" class="mr-1.5 rounded border-[#30363d] bg-[#0d1117]">
-                                Mouse y teclado a diferente altura (+2)
-                            </label>
-                            <br>
-                            <label class="inline-flex items-center text-xs text-[#8b949e]">
-                                <input type="checkbox" id="presionMano" class="mr-1.5 rounded border-[#30363d] bg-[#0d1117]">
-                                Reposamanos duro / Puntos de presión (+1)
-                            </label>
-                        </div>
-                    </div>
-
-                    <div>
-                        <label class="block text-sm font-medium text-[#8b949e] mb-1">Teclado</label>
-                        <select id="teclado" class="w-full bg-[#0d1117] border border-[#30363d] rounded p-2 text-sm focus:border-[#58a6ff] focus:outline-none">
-                            <option value="1">Muñecas rectas / Hombros relajados (1 pt)</option>
-                            <option value="2">Extensión de muñeca > 15º (2 pts)</option>
-                        </select>
-                        <div class="mt-2 space-y-1">
-                            <label class="inline-flex items-center text-xs text-[#8b949e]">
-                                <input type="checkbox" id="desviacionLateral" class="mr-1.5 rounded border-[#30363d] bg-[#0d1117]">
-                                Muñecas desviadas lateralmente (+1)
-                            </label>
-                            <br>
-                            <label class="inline-flex items-center text-xs text-[#8b949e]">
-                                <input type="checkbox" id="tecladoAlto" class="mr-1.5 rounded border-[#30363d] bg-[#0d1117]">
-                                Teclado muy alto / Hombros encogidos (+1)
-                            </label>
-                            <br>
-                            <label class="inline-flex items-center text-xs text-[#8b949e]">
-                                <input type="checkbox" id="alcanzarLejos" class="mr-1.5 rounded border-[#30363d] bg-[#0d1117]">
-                                Alcanzar objetos alejados/sobre la cabeza (+1)
-                            </label>
-                            <br>
-                            <label class="inline-flex items-center text-xs text-[#8b949e]">
-                                <input type="checkbox" id="tecladoNoAjustable" class="mr-1.5 rounded border-[#30363d] bg-[#0d1117]">
-                                Plataforma/teclado no ajustable (+1)
-                            </label>
-                        </div>
-                    </div>
-                </div>
-            </div>
-
-            <div class="bg-[#161b22] border border-[#30363d] rounded-lg p-5">
-                <h2 class="text-lg font-medium text-white mb-4 flex items-center gap-2 border-b border-[#30363d] pb-2">
-                    <span class="bg-[#30363d] text-xs px-2 py-0.5 rounded text-[#58a6ff]">4</span>
-                    Tiempos de Uso Diario (Factores de Corrección)
-                </h2>
-                <div class="grid grid-cols-1 md:grid-cols-3 gap-4">
-                    <div>
-                        <label class="block text-sm font-medium text-[#8b949e] mb-1">Uso Diario Silla</label>
-                        <select id="tiempoSilla" class="w-full bg-[#0d1117] border border-[#30363d] rounded p-2 text-sm focus:border-[#58a6ff] focus:outline-none">
-                            <option value="-1">< 1 h total o < 30 min ininterrumpidos (-1)</option>
-                            <option value="0" selected>Entre 1-4 h total o 30 min-1 h ininterrumpida (0)</option>
-                            <option value="1">> 4 h total o > 1 h ininterrumpida (+1)</option>
-                        </select>
-                    </div>
-
-                    <div>
-                        <label class="block text-sm font-medium text-[#8b949e] mb-1">Uso Pantalla/Teléfono</label>
-                        <select id="tiempoPantalla" class="w-full bg-[#0d1117] border border-[#30363d] rounded p-2 text-sm focus:border-[#58a6ff] focus:outline-none">
-                            <option value="-1">< 1 h total o < 30 min ininterrumpidos (-1)</option>
-                            <option value="0" selected>Entre 1-4 h total o 30 min-1 h ininterrumpida (0)</option>
-                            <option value="1">> 4 h total o > 1 h ininterrumpida (+1)</option>
-                        </select>
-                    </div>
-
-                    <div>
-                        <label class="block text-sm font-medium text-[#8b949e] mb-1">Uso Periféricos</label>
-                        <select id="tiempoPerifericos" class="w-full bg-[#0d1117] border border-[#30363d] rounded p-2 text-sm focus:border-[#58a6ff] focus:outline-none">
-                            <option value="-1">< 1 h total o < 30 min ininterrumpidos (-1)</option>
-                            <option value="0" selected>Entre 1-4 h total o 30 min-1 h ininterrumpida (0)</option>
-                            <option value="1">> 4 h total o > 1 h ininterrumpida (+1)</option>
-                        </select>
-                    </div>
-                </div>
-            </div>
-
-        </div>
-
-        <div class="space-y-6">
-            <div class="bg-[#161b22] border border-[#30363d] rounded-lg p-5 sticky top-6">
-                <h2 class="text-lg font-medium text-white mb-4 border-b border-[#30363d] pb-2 flex items-center justify-between">
-                    Resultados
-                    <button onclick="calcularTodo()" class="text-xs bg-[#2ea44f] hover:bg-green-600 text-white font-medium px-3 py-1 rounded transition-colors">
-                        Calcular
-                    </button>
-                </h2>
-
-                <div class="space-y-3 font-mono text-sm">
-                    <div class="flex justify-between border-b border-[#30363d] pb-1.5">
-                        <span class="text-[#8b949e]">Silla (A.Asiento + P.Asiento):</span>
-                        <span id="resAltProf" class="text-white">0</span>
-                    </div>
-                    <div class="flex justify-between border-b border-[#30363d] pb-1.5">
-                        <span class="text-[#8b949e]">Silla (R.Brazos + Respaldo):</span>
-                        <span id="resBrazResp" class="text-white">0</span>
-                    </div>
-                    <div class="flex justify-between border-b border-[#30363d] pb-1.5">
-                        <span class="text-[#8b949e]">Punt. Silla Parcial (Tabla A):</span>
-                        <span id="resSillaParcial" class="text-white">0</span>
-                    </div>
-                    <div class="flex justify-between border-b border-[#30363d] pb-1.5">
-                        <span class="text-[#8b949e]">Punt. Silla Total:</span>
-                        <span id="resSillaTotal" class="text-white">0</span>
-                    </div>
-                    <div class="flex justify-between border-b border-[#30363d] pb-1.5">
-                        <span class="text-[#8b949e]">Pantalla + Teléfono (Tabla B):</span>
-                        <span id="resPantallaTel" class="text-white font-semibold">0</span>
-                    </div>
-                    <div class="flex justify-between border-b border-[#30363d] pb-1.5">
-                        <span class="text-[#8b949e]">Teclado + Mouse (Tabla C):</span>
-                        <span id="resTecladoMouse" class="text-white font-semibold">0</span>
-                    </div>
-                    <div class="flex justify-between border-b border-[#30363d] pb-1.5">
-                        <span class="text-[#8b949e]">Periféricos (Tabla D):</span>
-                        <span id="resPerifericos" class="text-white font-semibold">0</span>
-                    </div>
-                </div>
-
-                <div class="mt-6 p-4 rounded-lg text-center transition-all bg-[#0d1117] border border-[#30363d]" id="scoreBox">
-                    <div class="text-xs uppercase tracking-wider text-[#8b949e] mb-1">Puntuación Final ROSA</div>
-                    <div class="text-5xl font-bold text-[#58a6ff] my-2" id="resRosaFinal">0</div>
-                    <div class="text-base font-semibold" id="resRiesgo">Inapreciable</div>
-                    <div class="text-xs text-[#8b949e] mt-1" id="resActuacion">No es necesaria actuación.</div>
-                </div>
-
-            </div>
-        </div>
-
-    </main>
-
-    <footer class="border-t border-[#30363d] bg-[#161b22] py-4 px-6 text-center text-xs text-[#8b949e]">
-        Diseñado bajo la norma del Método ROSA (Rapid Office Strain Assessment) para el análisis de puestos de trabajo de oficina.
-    </footer>
-
+            <form id="rosaForm" class="space-y-8">
+@@ -270,103 +270,103 @@ <h4 class="font-black text-slate-900 border-b pb-1.5 mb-2 uppercase tracking-wid
     <script>
-        // --- DEFINICIÓN DE LAS MATRICES EXACTAS DE TUS DOCUMENTOS ---
+        // --- MATRICES OFICIALES DEL MÉTODO ROSA ---
 
-        // TABLA A: Cruza Altura+Profundidad (Filas 2-8) con Reposabrazos+Respaldo (Columnas 2-9)
-        const tablaA = [
-            [], // Relleno índice 0
-            [], // Relleno índice 1
-            [null, null, 2, 2, 2, 3, 4, 5, 6, 7], // Fila 2 (Altura+Profundidad)
-            [null, null, 2, 2, 3, 4, 5, 6, 7, 8], // Fila 3
-            [null, null, 3, 3, 3, 4, 5, 6, 7, 8], // Fila 4
-            [null, null, 4, 4, 4, 4, 5, 6, 7, 8], // Fila 5
-            [null, null, 5, 5, 5, 5, 6, 7, 8, 9], // Fila 6
-            [null, null, 6, 6, 6, 7, 7, 8, 8, 9], // Fila 7
-            [null, null, 7, 7, 7, 8, 8, 9, 9, 9]  // Fila 8
+        // TABLA A: Filas (Altura Asiento + Prof. Asiento: de 2 a 8), Columnas (Reposabrazos + Respaldo: de 2 a 9)
+        const TABLA_A = {
+            2: [2, 2, 2, 3, 4, 5, 6, 7],
+            3: [2, 2, 3, 4, 5, 6, 7, 8],
+            4: [3, 3, 3, 4, 5, 6, 7, 8],
+            5: [4, 4, 4, 4, 5, 6, 7, 8],
+            6: [5, 5, 5, 5, 6, 7, 8, 9],
+            7: [6, 6, 6, 7, 7, 8, 8, 9],
+            8: [7, 7, 7, 8, 8, 9, 9, 9]
+        };
+        // TABLA A: Filas (Altura Asiento + Prof. Asiento: de 2 a 9), Columnas (Reposabrazos + Respaldo: de 2 a 9)
+        const TABLA_A = [
+            [2, 2, 2, 3, 4, 5, 6, 7], // Alt+Prof = 2
+            [2, 2, 3, 4, 5, 6, 7, 8], // Alt+Prof = 3
+            [3, 3, 3, 4, 5, 6, 7, 8], // Alt+Prof = 4
+            [4, 4, 4, 4, 5, 6, 7, 8], // Alt+Prof = 5
+            [5, 5, 5, 5, 6, 7, 8, 9], // Alt+Prof = 6
+            [6, 6, 6, 7, 7, 8, 8, 9], // Alt+Prof = 7
+            [7, 7, 7, 8, 8, 9, 9, 9], // Alt+Prof = 8
+            [8, 8, 8, 9, 9, 9, 9, 9]  // Alt+Prof = 9
         ];
 
-        // TABLA B: Cruza Teléfono (Filas 0-6) con Pantalla (Columnas 0-7)
-        const tablaB = [
-            [1, 1, 1, 2, 3, 4, 5, 6], // Fila 0 (Teléfono = 0)
-            [1, 1, 2, 2, 3, 4, 5, 6], // Fila 1
-            [1, 2, 2, 3, 3, 4, 6, 7], // Fila 2
-            [2, 2, 3, 3, 4, 5, 6, 8], // Fila 3
-            [3, 3, 4, 4, 5, 6, 7, 8], // Fila 4
-            [4, 4, 5, 5, 6, 7, 8, 9], // Fila 5
-            [5, 5, 6, 7, 8, 8, 9, 9]  // Fila 6
+        // TABLA B: Filas (Puntuación Teléfono: de 1 a 9), Columnas (Puntuación Pantalla: de 1 a 9)
+        // Nota: Manejamos filas de 0 a 8 e índices de columna de 0 a 8 (el índice 0 emula la puntuación 1)
+        const TABLA_B = [
+            [1, 1, 1, 2, 3, 4, 5, 6, 7], // Fila 0 (Punt Teléfono = 1)
+            [1, 1, 2, 2, 3, 4, 5, 6, 7], // Fila 1 (Punt Teléfono = 2)
+            [1, 2, 2, 3, 3, 4, 6, 7, 8], // Fila 2 (Punt Teléfono = 3)
+            [2, 2, 3, 3, 4, 5, 6, 8, 8], // Fila 3 (Punt Teléfono = 4)
+            [3, 3, 4, 4, 5, 6, 7, 8, 9], // Fila 4 (Punt Teléfono = 5)
+            [4, 4, 5, 5, 6, 7, 8, 9, 9], // Fila 5 (Punt Teléfono = 6)
+            [5, 5, 6, 7, 8, 8, 9, 9, 9], // Fila 6 (Punt Teléfono = 7)
+            [6, 6, 7, 8, 8, 9, 9, 9, 9], // Fila 7 (Punt Teléfono = 8)
+            [7, 7, 8, 9, 9, 9, 9, 9, 9]  // Fila 8 (Punt Teléfono = 9)
+            [1, 1, 1, 2, 3, 4, 5, 6, 7], // Teléfono = 1
+            [1, 1, 2, 2, 3, 4, 5, 6, 7], // Teléfono = 2
+            [1, 2, 2, 3, 3, 4, 6, 7, 8], // Teléfono = 3
+            [2, 2, 3, 3, 4, 5, 6, 8, 8], // Teléfono = 4
+            [3, 3, 4, 4, 5, 6, 7, 8, 9], // Teléfono = 5
+            [4, 4, 5, 5, 6, 7, 8, 9, 9], // Teléfono = 6
+            [5, 5, 6, 7, 8, 8, 9, 9, 9], // Teléfono = 7
+            [6, 6, 7, 8, 8, 9, 9, 9, 9], // Teléfono = 8
+            [7, 7, 8, 9, 9, 9, 9, 9, 9]  // Teléfono = 9
         ];
 
-        // TABLA C: Cruza Mouse (Filas 0-7) con Teclado (Columnas 0-7)
-        const tablaC = [
-            [1, 1, 1, 2, 3, 4, 5, 6], // Fila 0 (Mouse = 0)
-            [1, 1, 2, 3, 4, 5, 6, 7], // Fila 1
-            [1, 2, 2, 3, 4, 5, 6, 7], // Fila 2
-            [2, 3, 3, 3, 5, 6, 7, 8], // Fila 3
-            [3, 4, 4, 5, 5, 6, 7, 8], // Fila 4
-            [4, 5, 5, 6, 6, 7, 8, 9], // Fila 5
-            [5, 6, 6, 7, 7, 8, 8, 9], // Fila 6
-            [6, 7, 7, 8, 8, 9, 9, 9]  // Fila 7
+        // TABLA C: Filas (Puntuación Mouse: de 1 a 9), Columnas (Puntuación Teclado: de 1 a 9)
+        const TABLA_C = [
+            [1, 1, 1, 2, 3, 4, 5, 6, 7], // Fila 0 (Punt Mouse = 1)
+            [1, 1, 2, 3, 4, 5, 6, 7, 8], // Fila 1 (Punt Mouse = 2)
+            [1, 2, 2, 3, 4, 5, 6, 7, 8], // Fila 2 (Punt Mouse = 3)
+            [2, 3, 3, 3, 5, 6, 7, 8, 8], // Fila 3 (Punt Mouse = 4)
+            [3, 4, 4, 5, 5, 6, 7, 8, 9], // Fila 4 (Punt Mouse = 5)
+            [4, 5, 5, 6, 6, 7, 8, 9, 9], // Fila 5 (Punt Mouse = 6)
+            [5, 6, 6, 7, 7, 8, 8, 9, 9], // Fila 6 (Punt Mouse = 7)
+            [6, 7, 7, 8, 8, 9, 9, 9, 9], // Fila 7 (Punt Mouse = 8)
+            [7, 8, 8, 9, 9, 9, 9, 9, 9]  // Fila 8 (Punt Mouse = 9)
+            [1, 1, 1, 2, 3, 4, 5, 6, 7], // Mouse = 1
+            [1, 1, 2, 3, 4, 5, 6, 7, 8], // Mouse = 2
+            [1, 2, 2, 3, 4, 5, 6, 7, 8], // Mouse = 3
+            [2, 3, 3, 3, 5, 6, 7, 8, 8], // Mouse = 4
+            [3, 4, 4, 5, 5, 6, 7, 8, 9], // Mouse = 5
+            [4, 5, 5, 6, 6, 7, 8, 9, 9], // Mouse = 6
+            [5, 6, 6, 7, 7, 8, 8, 9, 9], // Mouse = 7
+            [6, 7, 7, 8, 8, 9, 9, 9, 9], // Mouse = 8
+            [7, 8, 8, 9, 9, 9, 9, 9, 9]  // Mouse = 9
         ];
 
-        // TABLA D: Cruza Puntuación Tabla B (Filas 1-9) con Puntuación Tabla C (Columnas 1-9)
-        const tablaD = [
-            [], // Relleno índice 0
-            [null, 1, 1, 2, 3, 4, 5, 6, 7, 8], // Fila 1 (Tabla B = 1)
-            [null, 2, 2, 3, 4, 5, 6, 7, 8, 9], // Fila 2
-            [null, 3, 3, 3, 4, 5, 6, 7, 8, 9], // Fila 3
-            [null, 4, 4, 4, 4, 5, 6, 7, 8, 9], // Fila 4
-            [null, 5, 5, 5, 5, 5, 6, 7, 8, 9], // Fila 5
-            [null, 6, 6, 6, 6, 6, 6, 7, 8, 9], // Fila 6
-            [null, 7, 7, 7, 7, 7, 7, 7, 8, 9], // Fila 7
-            [null, 8, 8, 8, 8, 8, 8, 8, 8, 9], // Fila 8
-            [null, 9, 9, 9, 9, 9, 9, 9, 9, 9]  // Fila 9
+        // TABLA D: Filas (Puntuación Tabla B: de 1 a 9), Columnas (Puntuación Tabla C: de 1 a 9)
+        const TABLA_D = {
+            1: [1, 2, 3, 4, 5, 6, 7, 8, 9],
+            2: [2, 2, 3, 4, 5, 6, 7, 8, 9],
+            3: [3, 3, 3, 4, 5, 6, 7, 8, 9],
+            4: [4, 4, 4, 4, 5, 6, 7, 8, 9],
+            5: [5, 5, 5, 5, 5, 6, 7, 8, 9],
+            6: [6, 6, 6, 6, 6, 6, 7, 8, 9],
+            7: [7, 7, 7, 7, 7, 7, 7, 8, 9],
+            8: [8, 8, 8, 8, 8, 8, 8, 8, 9],
+            9: [9, 9, 9, 9, 9, 9, 9, 9, 9]
+        };
+        const TABLA_D = [
+            [1, 2, 3, 4, 5, 6, 7, 8, 9], // B = 1
+            [2, 2, 3, 4, 5, 6, 7, 8, 9], // B = 2
+            [3, 3, 3, 4, 5, 6, 7, 8, 9], // B = 3
+            [4, 4, 4, 4, 5, 6, 7, 8, 9], // B = 4
+            [5, 5, 5, 5, 5, 6, 7, 8, 9], // B = 5
+            [6, 6, 6, 6, 6, 6, 7, 8, 9], // B = 6
+            [7, 7, 7, 7, 7, 7, 7, 8, 9], // B = 7
+            [8, 8, 8, 8, 8, 8, 8, 8, 9], // B = 8
+            [9, 9, 9, 9, 9, 9, 9, 9, 9]  // B = 9
         ];
 
-        // TABLA E: Cruza Silla (Filas 1-10) con Pantalla y Periféricos (Columnas 1-10)
-        const tablaE = [
-            [], // Relleno índice 0
-            [null, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10], // Fila 1 (Silla = 1)
-            [null, 2, 2, 3, 4, 5, 6, 7, 8, 9, 10], // Fila 2
-            [null, 3, 3, 3, 4, 5, 6, 7, 8, 9, 10], // Fila 3
-            [null, 4, 4, 4, 4, 5, 6, 7, 8, 9, 10], // Fila 4
-            [null, 5, 5, 5, 5, 5, 6, 7, 8, 9, 10], // Fila 5
-            [null, 6, 6, 6, 6, 6, 6, 7, 8, 9, 10], // Fila 6
-            [null, 7, 7, 7, 7, 7, 7, 7, 8, 9, 10], // Fila 7
-            [null, 8, 8, 8, 8, 8, 8, 8, 8, 9, 10], // Fila 8
-            [null, 9, 9, 9, 9, 9, 9, 9, 9, 9, 10], // Fila 9
-            [null, 10, 10, 10, 10, 10, 10, 10, 10, 10, 10] // Fila 10
+        // TABLA E: Filas (Puntuación Silla Final: de 1 a 10), Columnas (Puntuación Pantalla y Periféricos Tabla D: de 1 a 10)
+        const TABLA_E = {
+            1: [1, 2, 3, 4, 5, 6, 7, 8, 9, 10],
+            2: [2, 2, 3, 4, 5, 6, 7, 8, 9, 10],
+            3: [3, 3, 3, 4, 5, 6, 7, 8, 9, 10],
+            4: [4, 4, 4, 4, 5, 6, 7, 8, 9, 10],
+            5: [5, 5, 5, 5, 5, 6, 7, 8, 9, 10],
+            6: [6, 6, 6, 6, 6, 6, 7, 8, 9, 10],
+            7: [7, 7, 7, 7, 7, 7, 7, 8, 9, 10],
+            8: [8, 8, 8, 8, 8, 8, 8, 8, 8, 10],
+            9: [9, 9, 9, 9, 9, 9, 9, 9, 9, 10],
+            10: [10, 10, 10, 10, 10, 10, 10, 10, 10, 10]
+        };
+
+        // --- FUNCIONES AUXILIARES DE BÚSQUEDA EN MATRICES ---
+        const TABLA_E = [
+            [1, 2, 3, 4, 5, 6, 7, 8, 9, 10],  // Silla = 1
+            [2, 2, 3, 4, 5, 6, 7, 8, 9, 10],  // Silla = 2
+            [3, 3, 3, 4, 5, 6, 7, 8, 9, 10],  // Silla = 3
+            [4, 4, 4, 4, 5, 6, 7, 8, 9, 10],  // Silla = 4
+            [5, 5, 5, 5, 5, 6, 7, 8, 9, 10],  // Silla = 5
+            [6, 6, 6, 6, 6, 6, 7, 8, 9, 10],  // Silla = 6
+            [7, 7, 7, 7, 7, 7, 7, 8, 9, 10],  // Silla = 7
+            [8, 8, 8, 8, 8, 8, 8, 8, 9, 10],  // Silla = 8
+            [9, 9, 9, 9, 9, 9, 9, 9, 9, 10],  // Silla = 9
+            [10, 10, 10, 10, 10, 10, 10, 10, 10, 10] // Silla = 10
         ];
 
-        // --- SISTEMA DE CÁLCULO CONTROLADO ---
-
-        function calcularTodo() {
-            // 1. Silla - Altura y Profundidad
-            let altura = parseInt(document.getElementById('alturaAsiento').value);
-            if (document.getElementById('alturaNoRegulable').checked) altura += 1;
-            if (document.getElementById('espacioInsuficiente').checked) altura += 1;
-
-            let profundidad = parseInt(document.getElementById('profundidadAsiento').value);
-            if (document.getElementById('profundidadNoRegulable').checked) profundidad += 1;
-
-            let altProfTotal = altura + profundidad;
-            document.getElementById('resAltProf').innerText = altProfTotal;
-
-            // 2. Silla - Reposabrazos y Respaldo
-            let brazos = parseInt(document.getElementById('reposabrazos').value);
-            if (document.getElementById('brazosSeparados').checked) brazos += 1;
-            if (document.getElementById('superficieDura').checked) brazos += 1;
-            if (document.getElementById('brazosNoAjustables').checked) brazos += 1;
-
-            let resp = parseInt(document.getElementById('respaldo').value);
-            if (document.getElementById('mesaMuyAlta').checked) resp += 1;
-            if (document.getElementById('respaldoNoAjustable').checked) resp += 1;
-
-            let brazosRespTotal = brazos + resp;
-            document.getElementById('resBrazResp').innerText = brazosRespTotal;
-
-            // Cruce Tabla A (Silla Parcial)
-            // Limitar rangos de la matriz Tabla A: Filas (2 a 8), Columnas (2 a 9)
-            let fA = Math.max(2, Math.min(8, altProfTotal));
-            let cA = Math.max(2, Math.min(9, brazosRespTotal));
-            let puntuacionSillaParcial = tablaA[fA][cA];
-            document.getElementById('resSillaParcial').innerText = puntuacionSillaParcial;
-
-            // Suma Tiempo Silla
-            let tSilla = parseInt(document.getElementById('tiempoSilla').value);
-            let puntuacionSillaFinal = Math.max(1, Math.min(10, puntuacionSillaParcial + tSilla));
-            document.getElementById('resSillaTotal').innerText = puntuacionSillaFinal;
-
-            // 3. Pantalla y Teléfono (Tabla B)
-            let pant = parseInt(document.getElementById('pantalla').value);
-            if (document.getElementById('pantallaDesviada').checked) pant += 1;
-            if (document.getElementById('noAtril').checked) pant += 1;
-            if (document.getElementById('brillosPantalla').checked) pant += 1;
-            if (document.getElementById('pantallaLejos').checked) pant += 1;
-
-            let tel = parseInt(document.getElementById('telefono').value);
-            if (document.getElementById('sujetaHombro').checked) tel += 2;
-            if (document.getElementById('noManosLibres').checked) tel += 1;
-
-            // Si el teléfono no se usa en absoluto en la dinámica laboral, ROSA asigna 0 como valor base para el teléfono.
-            // Para la matriz del teléfono, se clampea el valor mínimo en 0 y el máximo en 6
-            let fB = Math.max(0, Math.min(6, tel)); 
-            let cB = Math.max(0, Math.min(7, pant));
-            let puntuacionBParcial = tablaB[fB][cB];
-
-            // Factor Tiempo Pantalla
-            let tPant = parseInt(document.getElementById('tiempoPantalla').value);
-            let puntuacionBFinal = Math.max(1, Math.min(9, puntuacionBParcial + tPant));
-            document.getElementById('resPantallaTel').innerText = puntuacionBFinal;
-
-            // 4. Teclado y Mouse (Tabla C)
-            let msc = parseInt(document.getElementById('mouse').value);
-            if (document.getElementById('mousePinza').checked) msc += 1;
-            if (document.getElementById('alturaDiferente').checked) msc += 2;
-            if (document.getElementById('presionMano').checked) msc += 1;
-
-            let tec = parseInt(document.getElementById('teclado').value);
-            if (document.getElementById('desviacionLateral').checked) tec += 1;
-            if (document.getElementById('tecladoAlto').checked) tec += 1;
-            if (document.getElementById('alcanzarLejos').checked) tec += 1;
-            if (document.getElementById('tecladoNoAjustable').checked) tec += 1;
-
-            // Limitar rangos para Tabla C: Mouse (0 a 7), Teclado (0 a 7)
-            let fC = Math.max(0, Math.min(7, msc));
-            let cC = Math.max(0, Math.min(7, tec));
-            let puntuacionCParcial = tablaC[fC][cC];
-
-            // Factor Tiempo Periféricos
-            let tPerif = parseInt(document.getElementById('tiempoPerifericos').value);
-            let puntuacionCFinal = Math.max(1, Math.min(9, puntuacionCParcial + tPerif));
-            document.getElementById('resTecladoMouse').innerText = puntuacionCFinal;
-
-            // 5. Periféricos Finales (Tabla D: Cruza Tabla B con Tabla C)
-            // Limitar rangos para Tabla D: Filas (1 a 9), Columnas (1 a 9)
-            let fD = Math.max(1, Math.min(9, puntuacionBFinal));
-            let cD = Math.max(1, Math.min(9, puntuacionCFinal));
-            let puntuacionDFinal = tablaD[fD][cD];
-            document.getElementById('resPerifericos').innerText = puntuacionDFinal;
-
-            // 6. Puntuación Final ROSA (Tabla E: Silla con Periféricos)
-            // Limitar rangos para Tabla E: Filas (1 a 10), Columnas (1 a 10)
-            let fE = Math.max(1, Math.min(10, puntuacionSillaFinal));
-            let cE = Math.max(1, Math.min(10, puntuacionDFinal));
-            let rosaFinal = tablaE[fE][cE];
-
-            document.getElementById('resRosaFinal').innerText = rosaFinal;
-
-            // Determinar Nivel de Riesgo y Actuación
-            let riesgo = "Inapreciable";
-            let actuacion = "No es necesaria actuación.";
-            let alertClass = "bg-[#0d1117] border-[#30363d] text-[#58a6ff]";
-
-            if (rosaFinal === 1) {
-                riesgo = "Inapreciable";
-                actuacion = "No es necesaria actuación.";
-                alertClass = "bg-green-950/30 border-green-800 text-green-400";
-            } else if (rosaFinal >= 2 && rosaFinal <= 4) {
-                riesgo = "Mejorable";
-                actuacion = "Pueden mejorarse algunos elementos del puesto.";
-                alertClass = "bg-yellow-950/30 border-yellow-800 text-yellow-400";
-            } else if (rosaFinal === 5) {
-                riesgo = "Alto";
-                actuacion = "Es necesaria la actuación.";
-                alertClass = "bg-orange-950/30 border-orange-800 text-orange-400";
-            } else if (rosaFinal >= 6 && rosaFinal <= 8) {
-                riesgo = "Muy Alto";
-                actuacion = "Es necesaria la actuación cuanto antes.";
-                alertClass = "bg-red-950/30 border-red-800 text-red-400";
-            } else if (rosaFinal >= 9 && rosaFinal <= 10) {
-                riesgo = "Extremo";
-                actuacion = "Es necesaria la actuación urgentemente.";
-                alertClass = "bg-red-900/50 border-red-700 text-red-200";
-            }
-
-            // Aplicar estilos visuales al bloque del resultado
-            document.getElementById('resRiesgo').innerText = riesgo;
-            document.getElementById('resActuacion').innerText = actuacion;
-            
-            const scoreBox = document.getElementById('scoreBox');
-            scoreBox.className = `mt-6 p-4 rounded-lg text-center transition-all border ${alertClass}`;
+        // --- FUNCIONES AUXILIARES DE BÚSQUEDA AJUSTADAS AL 0-INDEX ---
+        function getTablaAValue(altProf, repoResp) {
+            const r = Math.min(Math.max(altProf, 2), 8);
+            const c = Math.min(Math.max(repoResp, 2), 9);
+            return TABLA_A[r][c - 2];
+            const r = Math.min(Math.max(altProf - 2, 0), 7);    // Rango de filas: 2 a 9 (index 0 a 7)
+            const c = Math.min(Math.max(repoResp - 2, 0), 7);   // Rango de columnas: 2 a 9 (index 0 a 7)
+            return TABLA_A[r][c];
         }
 
-        // Ejecutar primer cálculo automático al abrir la página
-        window.onload = calcularTodo;
+        function getTablaBValue(telefono, pantalla) {
+            const r = Math.min(Math.max(telefono - 1, 0), 8);
+            const c = Math.min(Math.max(pantalla - 1, 0), 8);
+            const r = Math.min(Math.max(telefono - 1, 0), 8);   // Teléfono 1-9 -> index 0-8
+            const c = Math.min(Math.max(pantalla - 1, 0), 8);   // Pantalla 1-9 -> index 0-8
+            return TABLA_B[r][c];
+        }
 
-        // Agregar listeners de cambio a todos los inputs para recalcular en tiempo real
-        const inputs = document.querySelectorAll('select, input[type="checkbox"]');
-        inputs.forEach(input => {
-            input.addEventListener('change', calcularTodo);
-        });
-    </script>
-</body>
-</html>
+        function getTablaCValue(mouse, teclado) {
+            const r = Math.min(Math.max(mouse - 1, 0), 8);
+            const c = Math.min(Math.max(teclado - 1, 0), 8);
+            const r = Math.min(Math.max(mouse - 1, 0), 8);      // Mouse 1-9 -> index 0-8
+            const c = Math.min(Math.max(teclado - 1, 0), 8);    // Teclado 1-9 -> index 0-8
+            return TABLA_C[r][c];
+        }
+
+        function getTablaDValue(bVal, cVal) {
+            const r = Math.min(Math.max(bVal, 1), 9);
+            const c = Math.min(Math.max(cVal, 1), 9);
+            return TABLA_D[r][c - 1];
+            const r = Math.min(Math.max(bVal - 1, 0), 8);       // Tabla B 1-9 -> index 0-8
+            const c = Math.min(Math.max(cVal - 1, 0), 8);       // Tabla C 1-9 -> index 0-8
+            return TABLA_D[r][c];
+        }
+
+        function getTablaEValue(silla, perifericos) {
+            const r = Math.min(Math.max(silla, 1), 10);
+            const c = Math.min(Math.max(perifericos, 1), 10);
+            return TABLA_E[r][c - 1];
+            const r = Math.min(Math.max(silla - 1, 0), 9);      // Silla Final 1-10 -> index 0-9
+            const c = Math.min(Math.max(perifericos - 1, 0), 9); // Periféricos 1-10 -> index 0-9
+            return TABLA_E[r][c];
+        }
+
+        // --- ALGORITMO OFICIAL DE CÁLCULO ---
+        // --- ALGORITMO DE CÁLCULO CORREGIDO ---
+        function calcularROSAOficial() {
+            // 1. SILLA: ALTURA Y PROFUNDIDAD
+            let altAsiento = parseInt(document.getElementById('sillaAltura').value);
+@@ -391,38 +391,38 @@ <h4 class="font-black text-slate-900 border-b pb-1.5 mb-2 uppercase tracking-wid
+
+            // Sumar modificador por tiempo de uso SILLA
+            const tSilla = parseInt(document.getElementById('tiempoSilla').value);
+            const scoreSillaFinal = Math.max(1, scoreSillaBase + tSilla);
+            const scoreSillaFinal = Math.min(10, Math.max(1, scoreSillaBase + tSilla));
+
+
+            // 2. PANTALLA Y TELÉFONO (CON TIEMPOS INDEPENDIENTES)
+            // 2. PANTALLA Y TELÉFONO
+            let pantalla = parseInt(document.getElementById('pantalla').value);
+            if (document.getElementById('pan_desviada').checked) pantalla += 1;
+            if (document.getElementById('pan_documentos').checked) pantalla += 1;
+            if (document.getElementById('pan_brillos').checked) pantalla += 1;
+            if (document.getElementById('pan_lejos').checked) pantalla += 1;
+
+            const tPan = parseInt(document.getElementById('tiempoPantalla').value);
+            const scorePantallaFinal = Math.max(1, pantalla + tPan); // Tiempo sumado a Pantalla
+            const scorePantallaFinal = Math.min(9, Math.max(1, pantalla + tPan));
+
+            let telefono = parseInt(document.getElementById('telefono').value);
+            if (document.getElementById('tel_cuello').checked) telefono += 2;
+            if (document.getElementById('tel_no_manos_libres').checked) telefono += 1;
+
+            const tTel = parseInt(document.getElementById('tiempoTelefono').value);
+            const scoreTelefonoFinal = Math.max(1, telefono + tTel); // Tiempo sumado al Teléfono
+            const scoreTelefonoFinal = Math.min(9, Math.max(1, telefono + tTel));
+
+            // Cruzar en Tabla B
+            const scoreTablaB = getTablaBValue(scoreTelefonoFinal, scorePantallaFinal);
+
+
+            // 3. TECLADO Y MOUSE (CON TIEMPOS INDEPENDIENTES)
+            // 3. TECLADO Y MOUSE
+            let mouse = parseInt(document.getElementById('mouse').value);
+            if (document.getElementById('mou_pinza').checked) mouse += 1;
+            if (document.getElementById('mou_alturas').checked) mouse += 2;
+            if (document.getElementById('mou_presion').checked) mouse += 1;
+
+            const tMou = parseInt(document.getElementById('tiempoMouse').value);
+            const scoreMouseFinal = Math.max(1, mouse + tMou); // Tiempo sumado al Mouse
+            const scoreMouseFinal = Math.min(9, Math.max(1, mouse + tMou));
+
+            let teclado = parseInt(document.getElementById('teclado').value); 
+            if (document.getElementById('tec_desviacion').checked) teclado += 1;
+@@ -431,7 +431,7 @@ <h4 class="font-black text-slate-900 border-b pb-1.5 mb-2 uppercase tracking-wid
+            if (document.getElementById('tec_alejado').checked) teclado += 1;
+
+            const tTec = parseInt(document.getElementById('tiempoTeclado').value);
+            const scoreTecladoFinal = Math.max(1, teclado + tTec); // Tiempo sumado al Teclado
+            const scoreTecladoFinal = Math.min(9, Math.max(1, teclado + tTec));
+
+            // Cruzar en Tabla C
+            const scoreTablaC = getTablaCValue(scoreMouseFinal, scoreTecladoFinal);
+@@ -452,7 +452,7 @@ <h4 class="font-black text-slate-900 border-b pb-1.5 mb-2 uppercase tracking-wid
+            const nivelActuacion = document.getElementById('nivelActuacion');
+            const actuacionDetalle = document.getElementById('actuacionDetalle');
+
+            // Renderizado de las puntuaciones parciales para auditoría del usuario
+            // Renderizado de las puntuaciones parciales para auditoría
+            document.getElementById('pSillaAltProf').textContent = (altAsiento + profAsiento);
+            document.getElementById('pSillaRepoResp').textContent = (repoBrazos + respaldo);
+            document.getElementById('pSillaBase').textContent = scoreSillaBase;
