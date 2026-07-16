@@ -11,7 +11,7 @@
     <header class="bg-blue-800 text-white py-6 shadow-md border-b-4 border-blue-900">
         <div class="container mx-auto px-4 text-center">
             <h1 class="text-3xl font-extrabold tracking-tight">EVALUACIÓN DEL MÉTODO ROSA</h1>
-            <p class="text-sm mt-2 font-medium opacity-90">Rapid Office Strain Assessment — Algoritmo y Matrices de Cálculo Corregidas</p>
+            <p class="text-sm mt-2 font-medium opacity-90">Rapid Office Strain Assessment</p>
         </div>
     </header>
 
@@ -193,12 +193,11 @@
                                 <label class="block font-bold text-slate-700 text-sm mb-2">Puntuación del Teclado:</label>
                                 <select id="teclado" class="w-full border rounded p-2 text-sm mb-3">
                                     <option value="1">Las muñecas están rectas y los hombros relajados.</option>
-                                    <option value="2">El teclado está demasiado alto. Los hombros están encogidos.</option>
+                                    <option value="2">Las muñecas están extendidas más de 15º.</option>
                                 </select>
                                 <span class="block font-semibold text-xs text-slate-500 mb-1">Incrementos:</span>
                                 <div class="space-y-1 text-xs text-slate-600 font-normal mb-3">
                                     <label class="flex items-center"><input type="checkbox" id="tec_desviacion" value="1" class="mr-2"> Muñecas desviadas lateralmente hacia dentro o hacia fuera (+1).</label>
-                                    <label class="flex items-center"><input type="checkbox" id="tec_ext" value="2" class="mr-2"> Las muñecas están extendidas más de 15º (+2).</label>
                                     <label class="flex items-center"><input type="checkbox" id="tec_no_ajustable" value="1" class="mr-2"> El teclado, o la plataforma sobre la que reposa, no son ajustables (+1).</label>
                                     <label class="flex items-center"><input type="checkbox" id="tec_alejado" value="1" class="mr-2"> Se deben alcanzar objetos alejados o por encima de la cabeza (+1).</label>
                                 </div>
@@ -361,18 +360,6 @@
             return TABLA_C[r][c];
         }
 
-        function getTablaDValue(bVal, cVal) {
-            const r = Math.min(Math.max(bVal - 1, 0), 8);       // Tabla B 1-9 -> index 0-8
-            const c = Math.min(Math.max(cVal - 1, 0), 8);       // Tabla C 1-9 -> index 0-8
-            return TABLA_D[r][c];
-        }
-
-        function getTablaEValue(sillaFinal, perifericos) {
-            const r = Math.min(Math.max(sillaFinal - 1, 0), 9); // Silla Final (Tabla A + tiempo) 1-10 -> index 0-9
-            const c = Math.min(Math.max(perifericos - 1, 0), 9); // Periféricos 1-10 -> index 0-9
-            return TABLA_E[r][c];
-        }
-
         // --- ALGORITMO DE CÁLCULO ---
         function calcularROSAOficial() {
             // 1. SILLA: ALTURA Y PROFUNDIDAD
@@ -433,7 +420,6 @@
 
             let teclado = parseInt(document.getElementById('teclado').value); 
             if (document.getElementById('tec_desviacion').checked) teclado += 1;
-            if (document.getElementById('tec_ext').checked) teclado += 2;
             if (document.getElementById('tec_no_ajustable').checked) teclado += 1;
             if (document.getElementById('tec_alejado').checked) teclado += 1;
 
