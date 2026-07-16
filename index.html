@@ -3,20 +3,37 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Evaluación Ergonómica - Método ROSA</title>
+    <title>Evaluación Ergonómica - ROSA / RULA</title>
     <script src="https://cdn.tailwindcss.com"></script>
 </head>
 <body class="bg-slate-100 text-slate-800 font-sans min-h-screen flex flex-col justify-between">
 
     <header class="bg-blue-800 text-white py-6 shadow-md border-b-4 border-blue-900">
         <div class="container mx-auto px-4 text-center">
-            <h1 class="text-3xl font-extrabold tracking-tight">EVALUACIÓN DEL MÉTODO ROSA</h1>
-            <p class="text-sm mt-2 font-medium opacity-90">Rapid Office Strain Assessment</p>
+            <h1 class="text-3xl font-extrabold tracking-tight">EVALUACIÓN ERGONÓMICA</h1>
+            <p class="text-sm mt-2 font-medium opacity-90">Selecciona el método de evaluación que deseas aplicar</p>
         </div>
     </header>
 
+    <nav class="bg-blue-900 shadow-inner">
+        <div class="container mx-auto px-4 max-w-5xl flex">
+            <button type="button" onclick="switchMetodo('rosa')" id="tabBtnRosa"
+                class="flex-1 py-3 text-center font-bold text-sm uppercase tracking-wide transition duration-150 border-b-4 border-white text-white">
+                Método ROSA
+            </button>
+            <button type="button" onclick="switchMetodo('rula')" id="tabBtnRula"
+                class="flex-1 py-3 text-center font-bold text-sm uppercase tracking-wide transition duration-150 border-b-4 border-transparent text-blue-300 hover:text-white">
+                Método RULA
+            </button>
+        </div>
+    </nav>
+
     <main class="container mx-auto px-4 py-8 max-w-5xl">
+
+        <div id="rosaSection">
         <div class="bg-white rounded-xl shadow-xl p-6 md:p-8">
+            <h2 class="text-2xl font-black text-blue-800 mb-1">EVALUACIÓN DEL MÉTODO ROSA</h2>
+            <p class="text-xs text-slate-500 mb-4">Rapid Office Strain Assessment</p>
             <p class="mb-6 text-sm text-slate-600 border-b pb-4 leading-relaxed">
                 Complete cada uno de los criterios. El sistema calcula la puntuación final aplicando los modificadores de tiempo de forma individualizada para cada dispositivo y cruzando los resultados a través de las matrices correspondientes.
             </p>
@@ -28,6 +45,7 @@
                         <span class="bg-blue-800 text-white rounded-full w-7 h-7 inline-flex items-center justify-center mr-2 text-sm">1</span>
                         Evaluación de la Silla (Grupo A)
                     </h2>
+
                     
                     <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
                         <div class="bg-white p-4 rounded border border-slate-150">
@@ -270,10 +288,218 @@
                 </div>
             </div>
         </div>
-    </main>
+        </div><div id="rulaSection" class="hidden">
+        <div class="bg-white rounded-xl shadow-xl p-6 md:p-8">
+            <h2 class="text-2xl font-black text-emerald-800 mb-1">EVALUACIÓN DEL MÉTODO RULA</h2>
+            <p class="text-xs text-slate-500 mb-4">Rapid Upper Limb Assessment</p>
+            <p class="mb-6 text-sm text-slate-600 border-b pb-4 leading-relaxed">
+                Complete los criterios de los Grupos A (brazo, antebrazo, muñeca y giro) y B (cuello, tronco y piernas). El sistema aplica la actividad muscular y la carga/fuerza a cada grupo, cruza los resultados en la Tabla C y determina la puntuación final RULA.
+            </p>
+
+            <form id="rulaForm" class="space-y-8">
+
+                <div class="bg-slate-50 p-6 rounded-lg border border-slate-200 shadow-sm">
+                    <h2 class="text-xl font-bold text-emerald-800 mb-4 flex items-center border-b pb-2 border-emerald-100">
+                        <span class="bg-emerald-800 text-white rounded-full w-7 h-7 inline-flex items-center justify-center mr-2 text-sm">A</span>
+                        Grupo A — Brazo, Antebrazo y Muñeca
+                    </h2>
+
+                    <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
+                        <div class="bg-white p-4 rounded border border-slate-150">
+                            <label class="block font-bold text-slate-700 text-sm mb-2">Brazo:</label>
+                            <select id="rulaBrazo" class="w-full border rounded p-2 text-sm mb-3">
+                                <option value="1">Desde 20° de extensión a 20° de flexión.</option>
+                                <option value="2">Extensión &gt;20° o flexión &gt;20° y &lt;45°.</option>
+                                <option value="3">Flexión &gt;45° y 90°.</option>
+                                <option value="4">Flexión &gt;90°.</option>
+                            </select>
+                            <span class="block font-semibold text-xs text-slate-500 mb-1">Incrementos:</span>
+                            <div class="space-y-1 text-xs text-slate-600">
+                                <label class="flex items-center"><input type="checkbox" id="brazo_hombro" value="1" class="mr-2"> Hombro elevado o brazo rotado (+1).</label>
+                                <label class="flex items-center"><input type="checkbox" id="brazo_abducido" value="1" class="mr-2"> Brazos abducidos (+1).</label>
+                                <label class="flex items-center"><input type="checkbox" id="brazo_apoyo" value="1" class="mr-2"> Existe un punto de apoyo (-1).</label>
+                            </div>
+                        </div>
+
+                        <div class="bg-white p-4 rounded border border-slate-150">
+                            <label class="block font-bold text-slate-700 text-sm mb-2">Antebrazo:</label>
+                            <select id="rulaAntebrazo" class="w-full border rounded p-2 text-sm mb-3">
+                                <option value="1">Flexión entre 60° y 100°.</option>
+                                <option value="2">Flexión &lt;60° o &gt;100°.</option>
+                            </select>
+                            <span class="block font-semibold text-xs text-slate-500 mb-1">Incrementos (+1 c/u):</span>
+                            <div class="space-y-1 text-xs text-slate-600">
+                                <label class="flex items-center"><input type="checkbox" id="ante_lado" value="1" class="mr-2"> A un lado del cuerpo.</label>
+                                <label class="flex items-center"><input type="checkbox" id="ante_cruza" value="1" class="mr-2"> Cruza la línea media.</label>
+                            </div>
+                        </div>
+
+                        <div class="bg-white p-4 rounded border border-slate-150">
+                            <label class="block font-bold text-slate-700 text-sm mb-2">Muñeca:</label>
+                            <select id="rulaMuneca" class="w-full border rounded p-2 text-sm mb-3">
+                                <option value="1">Posición neutra.</option>
+                                <option value="2">Flexión o extensión &gt; 0° y &lt;15°.</option>
+                                <option value="3">Flexión o extensión &gt;15°.</option>
+                            </select>
+                            <span class="block font-semibold text-xs text-slate-500 mb-1">Incrementos (+1 c/u):</span>
+                            <div class="space-y-1 text-xs text-slate-600">
+                                <label class="flex items-center"><input type="checkbox" id="mun_radial" value="1" class="mr-2"> Desviación radial.</label>
+                                <label class="flex items-center"><input type="checkbox" id="mun_cubital" value="1" class="mr-2"> Desviación cubital.</label>
+                            </div>
+                        </div>
+
+                        <div class="bg-white p-4 rounded border border-slate-150">
+                            <label class="block font-bold text-slate-700 text-sm mb-2">Giro de la muñeca:</label>
+                            <select id="rulaGiro" class="w-full border rounded p-2 text-sm">
+                                <option value="1">Pronación o supinación media.</option>
+                                <option value="2">Pronación o supinación extrema.</option>
+                            </select>
+                        </div>
+                    </div>
+
+                    <div class="mt-4 grid grid-cols-1 md:grid-cols-2 gap-4">
+                        <div class="p-3 bg-emerald-50/50 border border-emerald-100 rounded">
+                            <label class="block font-bold text-emerald-900 text-[10px] tracking-wide uppercase mb-1">Tipo de actividad (Grupo A):</label>
+                            <select id="rulaActividadA" class="w-full border rounded p-1.5 text-xs bg-white">
+                                <option value="0" selected>Ocasional, poco frecuente y de corta duración (0)</option>
+                                <option value="1">Estática (se mantiene más de un minuto seguido) (+1)</option>
+                                <option value="1">Repetitiva (se repite más de 4 veces cada minuto) (+1)</option>
+                            </select>
+                        </div>
+                        <div class="p-3 bg-emerald-50/50 border border-emerald-100 rounded">
+                            <label class="block font-bold text-emerald-900 text-[10px] tracking-wide uppercase mb-1">Carga o fuerza (Grupo A):</label>
+                            <select id="rulaCargaA" class="w-full border rounded p-1.5 text-xs bg-white">
+                                <option value="0" selected>Carga menor de 2 Kg. mantenida intermitentemente (0)</option>
+                                <option value="1">Carga entre 2 y 10 Kg. mantenida intermitentemente (+1)</option>
+                                <option value="2">Carga entre 2 y 10 Kg. estática o repetitiva (+2)</option>
+                                <option value="2">Carga superior a 10 Kg mantenida intermitentemente (+2)</option>
+                                <option value="3">Carga superior a 10 Kg estática o repetitiva (+3)</option>
+                                <option value="3">Se producen golpes o fuerzas bruscas o repentinas (+3)</option>
+                            </select>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="bg-slate-50 p-6 rounded-lg border border-slate-200 shadow-sm">
+                    <h2 class="text-xl font-bold text-violet-800 mb-4 flex items-center border-b pb-2 border-violet-100">
+                        <span class="bg-violet-800 text-white rounded-full w-7 h-7 inline-flex items-center justify-center mr-2 text-sm">B</span>
+                        Grupo B — Cuello, Tronco y Piernas
+                    </h2>
+
+                    <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
+                        <div class="bg-white p-4 rounded border border-slate-150">
+                            <label class="block font-bold text-slate-700 text-sm mb-2">Cuello:</label>
+                            <select id="rulaCuello" class="w-full border rounded p-2 text-sm mb-3">
+                                <option value="1">Flexión entre 0° y 10°.</option>
+                                <option value="2">Flexión &gt;10° y ≤20°.</option>
+                                <option value="3">Flexión &gt;20°.</option>
+                                <option value="4">Extensión en cualquier grado.</option>
+                            </select>
+                            <span class="block font-semibold text-xs text-slate-500 mb-1">Incrementos (+1 c/u):</span>
+                            <div class="space-y-1 text-xs text-slate-600">
+                                <label class="flex items-center"><input type="checkbox" id="cuello_rotada" value="1" class="mr-2"> Cabeza rotada.</label>
+                                <label class="flex items-center"><input type="checkbox" id="cuello_lateral" value="1" class="mr-2"> Cabeza con inclinación lateral.</label>
+                            </div>
+                        </div>
+
+                        <div class="bg-white p-4 rounded border border-slate-150">
+                            <label class="block font-bold text-slate-700 text-sm mb-2">Tronco:</label>
+                            <select id="rulaTronco" class="w-full border rounded p-2 text-sm mb-3">
+                                <option value="1">De pie erguido sin flexión ni extensión, o sentado bien apoyado con ángulo tronco-piernas &gt;90°.</option>
+                                <option value="2">Flexión entre &gt;0° y 20°.</option>
+                                <option value="3">Flexión &gt;20° y ≤60°.</option>
+                                <option value="4">Flexión &gt;60°.</option>
+                            </select>
+                            <span class="block font-semibold text-xs text-slate-500 mb-1">Incrementos (+1 c/u):</span>
+                            <div class="space-y-1 text-xs text-slate-600">
+                                <label class="flex items-center"><input type="checkbox" id="tronco_rotado" value="1" class="mr-2"> Tronco rotado.</label>
+                                <label class="flex items-center"><input type="checkbox" id="tronco_lateral" value="1" class="mr-2"> Tronco con inclinación lateral.</label>
+                            </div>
+                        </div>
+
+                        <div class="bg-white p-4 rounded border border-slate-150">
+                            <label class="block font-bold text-slate-700 text-sm mb-2">Piernas:</label>
+                            <select id="rulaPiernas" class="w-full border rounded p-2 text-sm">
+                                <option value="1">Sentado, con piernas y pies bien apoyados.</option>
+                                <option value="1">De pie con el peso simétricamente distribuido y espacio para cambiar de posición.</option>
+                                <option value="2">Los pies no están apoyados o el peso no está simétricamente distribuido.</option>
+                            </select>
+                        </div>
+                    </div>
+
+                    <div class="mt-4 grid grid-cols-1 md:grid-cols-2 gap-4">
+                        <div class="p-3 bg-violet-50/50 border border-violet-100 rounded">
+                            <label class="block font-bold text-violet-900 text-[10px] tracking-wide uppercase mb-1">Tipo de actividad (Grupo B):</label>
+                            <select id="rulaActividadB" class="w-full border rounded p-1.5 text-xs bg-white">
+                                <option value="0" selected>Ocasional, poco frecuente y de corta duración (0)</option>
+                                <option value="1">Estática (se mantiene más de un minuto seguido) (+1)</option>
+                                <option value="1">Repetitiva (se repite más de 4 veces cada minuto) (+1)</option>
+                            </select>
+                        </div>
+                        <div class="p-3 bg-violet-50/50 border border-violet-100 rounded">
+                            <label class="block font-bold text-violet-900 text-[10px] tracking-wide uppercase mb-1">Carga o fuerza (Grupo B):</label>
+                            <select id="rulaCargaB" class="w-full border rounded p-1.5 text-xs bg-white">
+                                <option value="0" selected>Carga menor de 2 Kg. mantenida intermitentemente (0)</option>
+                                <option value="1">Carga entre 2 y 10 Kg. mantenida intermitentemente (+1)</option>
+                                <option value="2">Carga entre 2 y 10 Kg. estática o repetitiva (+2)</option>
+                                <option value="2">Carga superior a 10 Kg mantenida intermitentemente (+2)</option>
+                                <option value="3">Carga superior a 10 Kg estática o repetitiva (+3)</option>
+                                <option value="3">Se producen golpes o fuerzas bruscas o repentinas (+3)</option>
+                            </select>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="text-center pt-4">
+                    <button type="button" onclick="calcularRULA()" class="bg-emerald-800 text-white font-extrabold py-4 px-12 rounded-lg shadow-lg hover:bg-emerald-900 transition duration-200 w-full sm:w-auto text-lg uppercase tracking-wider">
+                        Calcular Puntuación RULA
+                    </button>
+                </div>
+            </form>
+
+            <div id="resultadoRula" class="hidden mt-8 p-6 rounded-lg border-2 transition-all duration-300">
+                <div class="flex flex-col md:flex-row items-stretch justify-between gap-6">
+                    <div class="text-left space-y-3 flex-1">
+                        <h3 class="text-2xl font-black">RESULTADO FINAL RULA: <span id="rulaScoreText" class="text-5xl font-extrabold ml-1">0</span></h3>
+                        <div>
+                            <span class="font-bold text-sm text-slate-500 uppercase tracking-wide">Nivel de Riesgo:</span>
+                            <p id="rulaNivelRiesgo" class="font-black text-2xl uppercase tracking-tight"></p>
+                        </div>
+                        <div>
+                            <span class="font-bold text-xs text-slate-500 uppercase tracking-wide">Nivel de Actuación:</span>
+                            <p id="rulaNivelActuacion" class="font-bold text-base text-slate-700"></p>
+                        </div>
+                        <p id="rulaActuacionDetalle" class="text-sm text-slate-600 max-w-xl leading-relaxed"></p>
+                    </div>
+
+                    <div class="bg-white/90 p-4 rounded border border-slate-200 w-full md:w-80 text-xs text-slate-700 space-y-2 shadow-inner">
+                        <h4 class="font-black text-slate-900 border-b pb-1.5 mb-2 uppercase tracking-wide">Desglose de Puntuaciones:</h4>
+
+                        <div class="font-bold text-emerald-900 uppercase text-[10px] tracking-wide">Grupo A</div>
+                        <div>• Brazo: <span id="rP_brazo" class="font-bold">0</span> · Antebrazo: <span id="rP_antebrazo" class="font-bold">0</span></div>
+                        <div>• Muñeca: <span id="rP_muneca" class="font-bold">0</span> · Giro: <span id="rP_giro" class="font-bold">0</span></div>
+                        <div class="pl-2 text-emerald-800 font-semibold">• Tabla A: <span id="rP_tablaA" class="font-bold">0</span></div>
+                        <div class="pl-4 border-l-2 border-emerald-300">• Puntuación C (Tabla A + Activ. + Carga): <span id="rP_scoreC" class="font-bold">0</span></div>
+
+                        <div class="border-t pt-1.5"></div>
+                        <div class="font-bold text-violet-900 uppercase text-[10px] tracking-wide">Grupo B</div>
+                        <div>• Cuello: <span id="rP_cuello" class="font-bold">0</span> · Tronco: <span id="rP_tronco" class="font-bold">0</span> · Piernas: <span id="rP_piernas" class="font-bold">0</span></div>
+                        <div class="pl-2 text-violet-800 font-semibold">• Tabla B: <span id="rP_tablaB" class="font-bold">0</span></div>
+                        <div class="pl-4 border-l-2 border-violet-300">• Puntuación D (Tabla B + Activ. + Carga): <span id="rP_scoreD" class="font-bold">0</span></div>
+
+                        <div class="border-t-2 border-slate-300 pt-2"></div>
+                        <div class="font-bold text-red-900 uppercase text-[10px] tracking-wide">Resultado Final</div>
+                        <div class="pl-2 font-bold text-slate-900">
+                            • Tabla C (Puntuación C + Puntuación D): <span id="rP_tablaC" class="font-extrabold text-red-900">0</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        </div></main>
 
     <footer class="bg-slate-900 text-slate-400 text-center py-4 text-xs border-t border-slate-850">
-        <p>Evaluación Ergonómica — Método ROSA</p>
+        <p>Evaluación Ergonómica — Métodos ROSA y RULA</p>
     </footer>
 
     <script>
@@ -360,7 +586,19 @@
             return TABLA_C[r][c];
         }
 
-        // --- ALGORITMO DE CÁLCULO ---
+        function getTablaDValue(bVal, cVal) {
+            const r = Math.min(Math.max(bVal - 1, 0), 8);       // Tabla B 1-9 -> index 0-8
+            const c = Math.min(Math.max(cVal - 1, 0), 8);       // Tabla C 1-9 -> index 0-8
+            return TABLA_D[r][c];
+        }
+
+        function getTablaEValue(sillaFinal, perifericos) {
+            const r = Math.min(Math.max(sillaFinal - 1, 0), 9); // Silla Final (Tabla A + tiempo) 1-10 -> index 0-9
+            const c = Math.min(Math.max(perifericos - 1, 0), 9); // Periféricos 1-10 -> index 0-9
+            return TABLA_E[r][c];
+        }
+
+        // --- ALGORITMO DE CÁLCULO CORREGIDO ---
         function calcularROSAOficial() {
             // 1. SILLA: ALTURA Y PROFUNDIDAD
             let altAsiento = parseInt(document.getElementById('sillaAltura').value);
@@ -383,7 +621,7 @@
             // Cruzar en Tabla A para obtener puntuación Silla Base
             const scoreSillaBase = getTablaAValue(altAsiento + profAsiento, repoBrazos + respaldo);
             
-            // Sumar modificador por tiempo de uso SILLA (Ajuste lineal final)
+            // Sumar modificador por tiempo de uso SILLA
             const tSilla = parseInt(document.getElementById('tiempoSilla').value);
             const scoreSillaFinal = Math.min(10, Math.max(1, scoreSillaBase + tSilla));
 
@@ -430,11 +668,11 @@
             const scoreTablaC = getTablaCValue(scoreMouseFinal, scoreTecladoFinal);
 
 
-            // 4. CRUCE DE TABLA B CON TABLA C -> TABLA D (Periféricos netos)
+            // 4. CRUCE DE TABLA B CON TABLA C -> TABLA D
             const scoreTablaD = getTablaDValue(scoreTablaB, scoreTablaC);
 
 
-            // 5. CRUCE FINAL: SILLA FINAL (CON TIEMPO) + PERIFÉRICOS (TABLA D) -> TABLA E
+            // 5. CRUCE FINAL: SILLA FINAL (TABLA A + TIEMPO) + PERIFÉRICOS (TABLA D) -> TABLA E
             const scoreROSAFinal = getTablaEValue(scoreSillaFinal, scoreTablaD);
 
 
@@ -445,7 +683,7 @@
             const nivelActuacion = document.getElementById('nivelActuacion');
             const actuacionDetalle = document.getElementById('actuacionDetalle');
 
-            // Renderizado de las puntuaciones parciales para auditoría en el panel lateral
+            // Renderizado de las puntuaciones parciales para auditoría
             document.getElementById('pSillaAltProf').textContent = (altAsiento + profAsiento);
             document.getElementById('pSillaRepoResp').textContent = (repoBrazos + respaldo);
             document.getElementById('pSillaBase').textContent = scoreSillaBase;
@@ -465,7 +703,7 @@
             scoreText.textContent = scoreROSAFinal;
             resultBox.classList.remove('hidden');
 
-            // Categorización oficial de niveles de riesgo y acciones sugeridas
+            // Categorías de nivel de actuación oficiales según la normativa ROSA
             if (scoreROSAFinal === 1) {
                 resultBox.className = "mt-8 p-6 rounded-lg border-2 bg-green-50 border-green-500 text-green-950";
                 nivelRiesgo.textContent = "Inapreciable";
@@ -494,6 +732,215 @@
             }
 
             // Desplazamiento visual al cuadro de resultados
+            resultBox.scrollIntoView({ behavior: 'smooth' });
+        }
+
+        // --- CONTROL DE PESTAÑAS (ROSA / RULA) ---
+        function switchMetodo(metodo) {
+            const rosaSection = document.getElementById('rosaSection');
+            const rulaSection = document.getElementById('rulaSection');
+            const btnRosa = document.getElementById('tabBtnRosa');
+            const btnRula = document.getElementById('tabBtnRula');
+
+            if (metodo === 'rosa') {
+                rosaSection.classList.remove('hidden');
+                rulaSection.classList.add('hidden');
+                btnRosa.classList.add('border-white', 'text-white');
+                btnRosa.classList.remove('border-transparent', 'text-blue-300');
+                btnRula.classList.add('border-transparent', 'text-blue-300');
+                btnRula.classList.remove('border-white', 'text-white');
+            } else {
+                rulaSection.classList.remove('hidden');
+                rosaSection.classList.add('hidden');
+                btnRula.classList.add('border-white', 'text-white');
+                btnRula.classList.remove('border-transparent', 'text-blue-300');
+                btnRosa.classList.add('border-transparent', 'text-blue-300');
+                btnRosa.classList.remove('border-white', 'text-white');
+            }
+        }
+
+        // --- MATRICES OFICIALES DEL MÉTODO RULA ---
+
+        // TABLA A RULA: [Brazo][Antebrazo][ (Muñeca-1)*2 + (Giro-1) ]
+        // Brazo: 1-6 (index 0-5) | Antebrazo: 1-3 (index 0-2) | Columna: Muñeca 1-4 x Giro 1-2 (index 0-7)
+        const RULA_TABLA_A = [
+            // Brazo = 1
+            [
+                [1, 2, 2, 2, 2, 3, 3, 3], // Antebrazo = 1
+                [2, 2, 2, 2, 3, 3, 3, 3], // Antebrazo = 2
+                [2, 3, 3, 3, 3, 3, 4, 4]  // Antebrazo = 3
+            ],
+            // Brazo = 2
+            [
+                [2, 3, 3, 3, 3, 4, 4, 4],
+                [3, 3, 3, 3, 3, 4, 4, 4],
+                [3, 4, 4, 4, 4, 4, 5, 5]
+            ],
+            // Brazo = 3
+            [
+                [3, 3, 4, 4, 4, 4, 5, 5],
+                [3, 4, 4, 4, 4, 4, 5, 5],
+                [4, 4, 4, 4, 4, 5, 5, 5]
+            ],
+            // Brazo = 4
+            [
+                [4, 4, 4, 4, 4, 5, 5, 5],
+                [4, 4, 4, 5, 5, 5, 6, 6],
+                [4, 4, 4, 5, 5, 5, 6, 6]
+            ],
+            // Brazo = 5
+            [
+                [5, 5, 5, 5, 5, 6, 6, 7],
+                [5, 6, 6, 6, 6, 7, 7, 7],
+                [6, 6, 6, 7, 7, 7, 7, 8]
+            ],
+            // Brazo = 6
+            [
+                [7, 7, 7, 7, 7, 8, 8, 9],
+                [8, 8, 8, 8, 8, 9, 9, 9],
+                [9, 9, 9, 9, 9, 9, 9, 9]
+            ]
+        ];
+
+        // TABLA B RULA: [Cuello][ (Tronco-1)*2 + (Piernas-1) ]
+        // Cuello: 1-6 (index 0-5) | Columna: Tronco 1-6 x Piernas 1-2 (index 0-11)
+        const RULA_TABLA_B = [
+            [1, 3, 2, 3, 3, 4, 5, 5, 6, 6, 7, 7], // Cuello = 1
+            [2, 3, 2, 3, 4, 5, 5, 5, 6, 7, 7, 7], // Cuello = 2
+            [3, 3, 3, 4, 4, 5, 5, 6, 6, 7, 7, 7], // Cuello = 3
+            [5, 5, 5, 6, 6, 7, 7, 7, 7, 7, 8, 8], // Cuello = 4
+            [7, 7, 7, 7, 7, 8, 8, 8, 8, 8, 8, 8], // Cuello = 5
+            [8, 8, 8, 8, 8, 8, 8, 9, 9, 9, 9, 9]  // Cuello = 6
+        ];
+
+        // TABLA C RULA: Filas (Puntuación C: 1 a 8), Columnas (Puntuación D: 1 a 7)
+        const RULA_TABLA_C = [
+            [1, 2, 3, 3, 4, 5, 5], // C = 1
+            [2, 2, 3, 4, 4, 5, 5], // C = 2
+            [3, 3, 3, 4, 4, 5, 6], // C = 3
+            [3, 3, 3, 4, 5, 6, 6], // C = 4
+            [4, 4, 4, 5, 6, 7, 7], // C = 5
+            [4, 4, 5, 6, 6, 7, 7], // C = 6
+            [5, 5, 6, 6, 7, 7, 7], // C = 7
+            [5, 5, 6, 7, 7, 7, 7]  // C = 8
+        ];
+
+        function getRulaTablaAValue(brazo, antebrazo, muneca, giro) {
+            const rB = Math.min(Math.max(brazo - 1, 0), 5);
+            const rA = Math.min(Math.max(antebrazo - 1, 0), 2);
+            const c = Math.min(Math.max((muneca - 1) * 2 + (giro - 1), 0), 7);
+            return RULA_TABLA_A[rB][rA][c];
+        }
+
+        function getRulaTablaBValue(cuello, tronco, piernas) {
+            const r = Math.min(Math.max(cuello - 1, 0), 5);
+            const c = Math.min(Math.max((tronco - 1) * 2 + (piernas - 1), 0), 11);
+            return RULA_TABLA_B[r][c];
+        }
+
+        function getRulaTablaCValue(scoreC, scoreD) {
+            const r = Math.min(Math.max(scoreC - 1, 0), 7);
+            const c = Math.min(Math.max(scoreD - 1, 0), 6);
+            return RULA_TABLA_C[r][c];
+        }
+
+        // --- ALGORITMO DE CÁLCULO RULA ---
+        function calcularRULA() {
+            // GRUPO A: BRAZO, ANTEBRAZO, MUÑECA, GIRO
+            let brazo = parseInt(document.getElementById('rulaBrazo').value);
+            if (document.getElementById('brazo_hombro').checked) brazo += 1;
+            if (document.getElementById('brazo_abducido').checked) brazo += 1;
+            if (document.getElementById('brazo_apoyo').checked) brazo -= 1;
+            brazo = Math.min(6, Math.max(1, brazo));
+
+            let antebrazo = parseInt(document.getElementById('rulaAntebrazo').value);
+            if (document.getElementById('ante_lado').checked) antebrazo += 1;
+            if (document.getElementById('ante_cruza').checked) antebrazo += 1;
+            antebrazo = Math.min(3, Math.max(1, antebrazo));
+
+            let muneca = parseInt(document.getElementById('rulaMuneca').value);
+            if (document.getElementById('mun_radial').checked) muneca += 1;
+            if (document.getElementById('mun_cubital').checked) muneca += 1;
+            muneca = Math.min(4, Math.max(1, muneca));
+
+            const giro = parseInt(document.getElementById('rulaGiro').value);
+
+            const tablaA = getRulaTablaAValue(brazo, antebrazo, muneca, giro);
+
+            const actividadA = parseInt(document.getElementById('rulaActividadA').value);
+            const cargaA = parseInt(document.getElementById('rulaCargaA').value);
+            const scoreC = Math.min(8, Math.max(1, tablaA + actividadA + cargaA));
+
+            // GRUPO B: CUELLO, TRONCO, PIERNAS
+            let cuello = parseInt(document.getElementById('rulaCuello').value);
+            if (document.getElementById('cuello_rotada').checked) cuello += 1;
+            if (document.getElementById('cuello_lateral').checked) cuello += 1;
+            cuello = Math.min(6, Math.max(1, cuello));
+
+            let tronco = parseInt(document.getElementById('rulaTronco').value);
+            if (document.getElementById('tronco_rotado').checked) tronco += 1;
+            if (document.getElementById('tronco_lateral').checked) tronco += 1;
+            tronco = Math.min(6, Math.max(1, tronco));
+
+            const piernas = parseInt(document.getElementById('rulaPiernas').value);
+
+            const tablaB = getRulaTablaBValue(cuello, tronco, piernas);
+
+            const actividadB = parseInt(document.getElementById('rulaActividadB').value);
+            const cargaB = parseInt(document.getElementById('rulaCargaB').value);
+            const scoreD = Math.min(7, Math.max(1, tablaB + actividadB + cargaB));
+
+            // TABLA C: RESULTADO FINAL
+            const scoreRULAFinal = getRulaTablaCValue(scoreC, scoreD);
+
+            // --- RENDERIZACIÓN DE RESULTADOS ---
+            const resultBox = document.getElementById('resultadoRula');
+            const scoreText = document.getElementById('rulaScoreText');
+            const nivelRiesgo = document.getElementById('rulaNivelRiesgo');
+            const nivelActuacion = document.getElementById('rulaNivelActuacion');
+            const actuacionDetalle = document.getElementById('rulaActuacionDetalle');
+
+            document.getElementById('rP_brazo').textContent = brazo;
+            document.getElementById('rP_antebrazo').textContent = antebrazo;
+            document.getElementById('rP_muneca').textContent = muneca;
+            document.getElementById('rP_giro').textContent = giro;
+            document.getElementById('rP_tablaA').textContent = tablaA;
+            document.getElementById('rP_scoreC').textContent = scoreC;
+
+            document.getElementById('rP_cuello').textContent = cuello;
+            document.getElementById('rP_tronco').textContent = tronco;
+            document.getElementById('rP_piernas').textContent = piernas;
+            document.getElementById('rP_tablaB').textContent = tablaB;
+            document.getElementById('rP_scoreD').textContent = scoreD;
+
+            document.getElementById('rP_tablaC').textContent = scoreRULAFinal;
+
+            scoreText.textContent = scoreRULAFinal;
+            resultBox.classList.remove('hidden');
+
+            // Niveles de actuación oficiales según la normativa RULA
+            if (scoreRULAFinal <= 2) {
+                resultBox.className = "mt-8 p-6 rounded-lg border-2 bg-green-50 border-green-500 text-green-950";
+                nivelRiesgo.textContent = "Aceptable";
+                nivelActuacion.textContent = "Nivel 1";
+                actuacionDetalle.textContent = "Riesgo aceptable. No se requiere actuación.";
+            } else if (scoreRULAFinal <= 4) {
+                resultBox.className = "mt-8 p-6 rounded-lg border-2 bg-yellow-50 border-yellow-500 text-yellow-950";
+                nivelRiesgo.textContent = "Riesgo Medio";
+                nivelActuacion.textContent = "Nivel 2";
+                actuacionDetalle.textContent = "Pueden requerirse cambios en la tarea; es conveniente profundizar en el estudio.";
+            } else if (scoreRULAFinal <= 6) {
+                resultBox.className = "mt-8 p-6 rounded-lg border-2 bg-orange-50 border-orange-500 text-orange-950";
+                nivelRiesgo.textContent = "Riesgo Alto";
+                nivelActuacion.textContent = "Nivel 3";
+                actuacionDetalle.textContent = "Se requiere el rediseño de la tarea.";
+            } else {
+                resultBox.className = "mt-8 p-6 rounded-lg border-2 bg-red-100 border-red-700 text-red-950";
+                nivelRiesgo.textContent = "Riesgo Muy Alto";
+                nivelActuacion.textContent = "Nivel 4";
+                actuacionDetalle.textContent = "Se requieren cambios urgentes en la tarea.";
+            }
+
             resultBox.scrollIntoView({ behavior: 'smooth' });
         }
     </script>
